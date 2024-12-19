@@ -1,0 +1,8 @@
+include LICENSE.txt
+include README.rst
+include setup.cfg
+include setup.py
+include DATKit/properties/config.properties
+recursive-include TAUP_DATKit *
+recursive-exclude TAUP_DATKit/docs *
+recursive-exclude TAUP_DATKit/demo *

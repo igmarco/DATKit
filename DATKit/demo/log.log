@@ -1,0 +1,8 @@
+2024-12-18 21:32:06,822 - ERROR - Prueba de log: el logger está configurado correctamente.
+2024-12-18 21:32:06,822 - ERROR - Excepción no manejada
+Traceback (most recent call last):
+  File "C:\Users\ignac\PycharmProjects\TAUP-DATKit\TAUP_DATKit\Demo\example_process.py", line 1, in <module>
+    from TAUP_DATKit.Properties.process_prop_loader import config_process
+  File "C:\Users\ignac\PycharmProjects\TAUP-DATKit\TAUP_DATKit\__init__.py", line 42, in <module>
+    HOLA
+NameError: name 'HOLA' is not defined
