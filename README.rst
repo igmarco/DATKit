@@ -26,15 +26,52 @@ The library structure of TAUP_DATKit is organized as follows:
     - "data_visualization.py": Functions for the representation and visualization of distances and similarities.
     - "distance_computing.py": Functions for the calculation of distances and linkage of chromatographic elements.
     - "demo/": Directory containing a simple demo for the library functionality.
-        -  #TODO
+        - "Data/": Example input data.
+        - "Saves/": Example output information.
+        - "example_process.py": Script that defines all the required parameters and use the main functions of the library.
+        - "log.log": Example log of the execution.
     - "docs/": Documentation for using the package and understanding its functionality.
-        -  #TODO
-    - "properties/": #TODO
-        -  #TODO
-    - "tools/": #TODO
-        -  #TODO
-    - "utils/": #TODO
-        -  #TODO
+        - "build/": Documentation generated.
+            - "html/": Documentation in HTML format.
+        - "rst/": Documentation in .rst format.
+        - "source/": Configuration of the documentation generation.
+    - "properties/": Functions that allow defining and applying the basic configuration of the library.
+        -  "config_prop_loader.py": Script that loads the configuration parameters from "config.properties".
+        -  "config.properties": Configuration properties.
+        -  "process_prop_loader.py": Script that loads the processing parameters from "process.properties".
+        -  "process.properties": Execution properties.
+        -  "prop_parser.py": Function for parsing config parameters from .properties files.
+    - "tools/": 
+        -  "chart_tools.py": Functions for generating plots.
+    - "utils/": Functions to manage other resources.
+        -  "image_utils.py": Functions for managing images.
+        - "interpolation_utils.py": Functions for defining interpolation algorithms.
+
+Requirements
+------------
+DATKit requires the following libraries to work properly. Please ensure that you install the versions indicated (or those within the specified ranges) to avoid compatibility issues:
+
+- **CairoSVG**: approximately version 2.7.1 (`~=2.7.1`)
+- **matplotlib**: approximately version 3.10.0 (`~=3.10.0`)
+- **numpy**: version between 1.26.0 (inclusive) and 2.0.0 (exclusive) (`>=1.26.0, <2.0.0`)
+- **pandas**: version between 2.2.2 (inclusive) and 2.3.0 (exclusive) (`>=2.2.2, <2.3.0`)
+- **reportlab**: approximately version 4.2.5 (`~=4.2.5`)
+- **scikit_learn**: approximately version 1.6.0 (`~=1.6.0`)
+- **scipy**: version between 1.7.0 (inclusive) and 1.14.0 (exclusive) (`>=1.7.0, <1.14.0`)
+- **seaborn**: approximately version 0.13.2 (`~=0.13.2`)
+- **setuptools**: version 60.0.0 or higher (`>=60.0.0`)
+
+```
+CairoSVG~=2.7.1
+matplotlib~=3.10.0
+numpy>=1.26.0,<2.0.0
+pandas>=2.2.2,<2.3.0
+reportlab~=4.2.5
+scikit_learn~=1.6.0
+scipy>=1.7.0,<1.14.0
+seaborn~=0.13.2
+setuptools>=60.0.0
+```
 
 For detailed instructions on installation and usage, see the documentation in the **docs/** directory.
 
