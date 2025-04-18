@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit.tools.chart_tools &mdash; TAUP-DATKit 0.4.1 documentation</title>
+  <title>DATKit.tools.chart_tools &mdash; TAUP-DATKit 0.4.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=c87aa342"></script>
+        <script src="../../../_static/documentation_options.js?v=ff822928"></script>
         <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -134,7 +134,7 @@
 
 <div class="viewcode-block" id="plot_heatmap">
 <a class="viewcode-back" href="../../../DATKit.tools.html#DATKit.tools.chart_tools.plot_heatmap">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">plot_heatmap</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;heatmap.svg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Heatmap&#39;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_heatmap</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;heatmap.svg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Heatmap&#39;</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plots a heatmap based on the provided similarity matrix.</span>
 
@@ -150,6 +150,8 @@
 <span class="sd">        The filename where the heatmap image will be saved.</span>
 <span class="sd">    title : str, optional</span>
 <span class="sd">        The title for the chart (default is &#39;Heatmap&#39;).</span>
+<span class="sd">    decimals: int, optional</span>
+<span class="sd">        The number of decimals to be displayed.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
@@ -163,7 +165,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">))</span>
 
     <span class="c1"># Create the heatmap</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">heatmap</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">heatmap</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">decimals</span><span class="si">}</span><span class="s2">f&quot;</span><span class="p">)</span>
 
     <span class="c1"># Rotate the x-axis and y-axis labels to make them horizontal</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span>

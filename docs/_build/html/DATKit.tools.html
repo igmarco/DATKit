@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit.tools package &mdash; TAUP-DATKit 0.4.1 documentation</title>
+  <title>DATKit.tools package &mdash; TAUP-DATKit 0.4.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=c87aa342"></script>
+        <script src="_static/documentation_options.js?v=ff822928"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -55,7 +55,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="DATKit.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DATKit.html#datkit-analysis-reporting-module">DATKit.analysis_reporting module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.html#module-DATKit.analysis_reporting">DATKit.analysis_reporting module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.html#module-DATKit.data_export">DATKit.data_export module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DATKit.html#module-DATKit.data_filtering">DATKit.data_filtering module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DATKit.html#module-DATKit.data_integration">DATKit.data_integration module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DATKit.html#module-DATKit.data_loading">DATKit.data_loading module</a></li>
@@ -128,7 +129,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DATKit.tools.chart_tools.plot_heatmap">
-<span class="sig-prename descclassname"><span class="pre">DATKit.tools.chart_tools.</span></span><span class="sig-name descname"><span class="pre">plot_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">similarity_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heatmap.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Heatmap'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/tools/chart_tools.html#plot_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.tools.chart_tools.plot_heatmap" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">DATKit.tools.chart_tools.</span></span><span class="sig-name descname"><span class="pre">plot_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">similarity_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heatmap.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Heatmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/tools/chart_tools.html#plot_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.tools.chart_tools.plot_heatmap" title="Link to this definition"></a></dt>
 <dd><p>Plots a heatmap based on the provided similarity matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -138,6 +139,7 @@
 <li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em>) – The metric name to be displayed in the plot title.</p></li>
 <li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='heatmap.svg'</em>) – The filename where the heatmap image will be saved.</p></li>
 <li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – The title for the chart (default is ‘Heatmap’).</p></li>
+<li><p><strong>decimals</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of decimals to be displayed.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

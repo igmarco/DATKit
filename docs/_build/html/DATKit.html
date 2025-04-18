@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit package &mdash; TAUP-DATKit 0.4.1 documentation</title>
+  <title>DATKit package &mdash; TAUP-DATKit 0.4.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,7 +15,7 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=c87aa342"></script>
+        <script src="_static/documentation_options.js?v=ff822928"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -61,8 +61,10 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_export">DATKit.data_export module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_distance_matrix"><code class="docutils literal notranslate"><span class="pre">export_distance_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_distance_matrix_list"><code class="docutils literal notranslate"><span class="pre">export_distance_matrix_list()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_matrix"><code class="docutils literal notranslate"><span class="pre">export_matrix()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_similarity_matrix"><code class="docutils literal notranslate"><span class="pre">export_similarity_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_similarity_matrix_list"><code class="docutils literal notranslate"><span class="pre">export_similarity_matrix_list()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_filtering">DATKit.data_filtering module</a><ul>
@@ -260,6 +262,39 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_export.export_distance_matrix_list">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_export.</span></span><span class="sig-name descname"><span class="pre">export_distance_matrix_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'???_distance_matrix.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_export.html#export_distance_matrix_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_export.export_distance_matrix_list" title="Link to this definition"></a></dt>
+<dd><p>Generates a CSV document with the distance matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_list</strong> (<em>list</em><em> of </em><em>pandas.DataFrame</em>) – A list of DataFrames where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>data_groups</strong> (<em>list</em><em> of </em><em>str</em>) – A list of names for each DataFrame in df_list.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='correlation'</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='???_distance_matrix.svg'</em>) – The filename where the distance matrices will be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the distance matrices CSVs to the specified files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="DATKit.data_export.export_matrix">
 <span class="sig-prename descclassname"><span class="pre">DATKit.data_export.</span></span><span class="sig-name descname"><span class="pre">export_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'matrix.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_export.html#export_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_export.export_matrix" title="Link to this definition"></a></dt>
 <dd><p>Exports the matrix to a CSV file with proper formatting.</p>
@@ -302,6 +337,39 @@
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Saves the similarity matrix CSV to the specified file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_export.export_similarity_matrix_list">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_export.</span></span><span class="sig-name descname"><span class="pre">export_similarity_matrix_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'???_similarity_matrix.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_export.html#export_similarity_matrix_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_export.export_similarity_matrix_list" title="Link to this definition"></a></dt>
+<dd><p>Generates a CSV document with the similarity matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_list</strong> (<em>list</em><em> of </em><em>pandas.DataFrame</em>) – A list of DataFrames where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>data_groups</strong> (<em>list</em><em> of </em><em>str</em>) – A list of names for each DataFrame in df_list.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='correlation'</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='???_similarity_matrix.svg'</em>) – The filename where the similarity matrices will be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the similarity matrices CSVs to the specified files.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>

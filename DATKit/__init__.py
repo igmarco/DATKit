@@ -25,7 +25,7 @@ try:
     def log_uncaught_exceptions(exc_type, exc_value, exc_traceback):
         if not issubclass(exc_type, KeyboardInterrupt):  # Ignorar interrupciones del teclado
             logger.error(
-                "Excepción no manejada",
+                "Unhandled exception",
                 exc_info=(exc_type, exc_value, exc_traceback)
             )
         # Llamar al comportamiento por defecto de excepthook
@@ -35,8 +35,8 @@ try:
     sys.excepthook = log_uncaught_exceptions
 
     if logger:
-        logger.error("Prueba de log: el logger está configurado correctamente.")
+        logger.error("(IGNORE THIS ERROR) Log test: the logger is configured correctly.")
 
 except Exception as e:
-    print(f"Error al parsear configuraciones: {e}")
+    print(f"Error while parsing configurations: {e}")
     log = False  # Desactiva logging si ocurre un error

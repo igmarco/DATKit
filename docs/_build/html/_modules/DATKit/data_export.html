@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit.data_export &mdash; TAUP-DATKit 0.4.1 documentation</title>
+  <title>DATKit.data_export &mdash; TAUP-DATKit 0.4.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -14,7 +14,7 @@
   
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=c87aa342"></script>
+        <script src="../../_static/documentation_options.js?v=ff822928"></script>
         <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -75,6 +75,34 @@
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">DATKit.distance_computing</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_distance_matrix</span>
+
+
+<div class="viewcode-block" id="export_matrix">
+<a class="viewcode-back" href="../../DATKit.html#DATKit.data_export.export_matrix">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">export_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;matrix.csv&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exports the matrix to a CSV file with proper formatting.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    matrix : ndarray</span>
+<span class="sd">        The matrix (2D numpy array).</span>
+<span class="sd">    names : list of str</span>
+<span class="sd">        The labels for rows and columns.</span>
+<span class="sd">    filename : str, optional</span>
+<span class="sd">        The filename for the CSV file.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        Files are saved to disk.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert matrix to DataFrame with labeled rows and columns</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+
+    <span class="c1"># Export to CSV, leaving the top-left cell blank (handled automatically by pandas)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="export_distance_matrix">
@@ -166,32 +194,104 @@
 
 
 
-<div class="viewcode-block" id="export_matrix">
-<a class="viewcode-back" href="../../DATKit.html#DATKit.data_export.export_matrix">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">export_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;matrix.csv&quot;</span><span class="p">):</span>
+<div class="viewcode-block" id="export_distance_matrix_list">
+<a class="viewcode-back" href="../../DATKit.html#DATKit.data_export.export_distance_matrix_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">export_distance_matrix_list</span><span class="p">(</span><span class="n">df_list</span><span class="p">,</span> <span class="n">data_groups</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;???_distance_matrix.csv&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Exports the matrix to a CSV file with proper formatting.</span>
+<span class="sd">    Generates a CSV document with the distance matrix.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    matrix : ndarray</span>
-<span class="sd">        The matrix (2D numpy array).</span>
-<span class="sd">    names : list of str</span>
-<span class="sd">        The labels for rows and columns.</span>
-<span class="sd">    filename : str, optional</span>
-<span class="sd">        The filename for the CSV file.</span>
+<span class="sd">    df_list : list of pandas.DataFrame</span>
+<span class="sd">        A list of DataFrames where each row corresponds to a sample and columns contain features.</span>
+<span class="sd">    data_groups : list of str</span>
+<span class="sd">        A list of names for each DataFrame in df_list.</span>
+<span class="sd">    metric : str, optional, default=&#39;correlation&#39;</span>
+<span class="sd">        The distance metric to use when computing the distance matrix. Supported metrics are:</span>
+<span class="sd">        - &#39;correlation&#39;: Correlation distance.</span>
+<span class="sd">        - &#39;cosine&#39;: Cosine distance.</span>
+<span class="sd">        - &#39;euclidean&#39;: Euclidean distance.</span>
+<span class="sd">        - &#39;jaccard&#39;: Jaccard distance.</span>
+<span class="sd">        - &#39;hamming&#39;: Hamming distance.</span>
+<span class="sd">        - &#39;minkowski&#39;: Minkowski distance (requires p in kwargs).</span>
+<span class="sd">        - &#39;pearson&#39;: Pearson correlation (returns 1 - absolute correlation).</span>
+<span class="sd">        - &#39;spearman&#39;: Spearman correlation (returns 1 - absolute correlation).</span>
+<span class="sd">    filename : str, optional, default=&#39;???_distance_matrix.svg&#39;</span>
+<span class="sd">        The filename where the distance matrices will be saved.</span>
 
 <span class="sd">    Returns</span>
-<span class="sd">    -------</span>
+<span class="sd">    ----------</span>
 <span class="sd">    None</span>
-<span class="sd">        Files are saved to disk.</span>
+<span class="sd">        Saves the distance matrices CSVs to the specified files.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If an unsupported metric is specified.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Convert matrix to DataFrame with labeled rows and columns</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+    <span class="c1"># Generate the distance matrix using the given metric</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">data_group</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data_groups</span><span class="p">,</span> <span class="n">df_list</span><span class="p">):</span>
 
-    <span class="c1"># Export to CSV, leaving the top-left cell blank (handled automatically by pandas)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+            <span class="n">distance_matrix</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">generate_distance_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
 
+            <span class="c1"># Export matrix</span>
+            <span class="n">export_matrix</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">data_group</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Metric </span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2"> is not supported.&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="export_similarity_matrix_list">
+<a class="viewcode-back" href="../../DATKit.html#DATKit.data_export.export_similarity_matrix_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">export_similarity_matrix_list</span><span class="p">(</span><span class="n">df_list</span><span class="p">,</span> <span class="n">data_groups</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;???_similarity_matrix.csv&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a CSV document with the similarity matrix.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_list : list of pandas.DataFrame</span>
+<span class="sd">        A list of DataFrames where each row corresponds to a sample and columns contain features.</span>
+<span class="sd">    data_groups : list of str</span>
+<span class="sd">        A list of names for each DataFrame in df_list.</span>
+<span class="sd">    metric : str, optional, default=&#39;correlation&#39;</span>
+<span class="sd">        The distance metric to use when computing the distance matrix. Supported metrics are:</span>
+<span class="sd">        - &#39;correlation&#39;: Correlation distance.</span>
+<span class="sd">        - &#39;cosine&#39;: Cosine distance.</span>
+<span class="sd">        - &#39;euclidean&#39;: Euclidean distance.</span>
+<span class="sd">        - &#39;jaccard&#39;: Jaccard distance.</span>
+<span class="sd">        - &#39;hamming&#39;: Hamming distance.</span>
+<span class="sd">        - &#39;minkowski&#39;: Minkowski distance (requires p in kwargs).</span>
+<span class="sd">        - &#39;pearson&#39;: Pearson correlation (returns 1 - absolute correlation).</span>
+<span class="sd">        - &#39;spearman&#39;: Spearman correlation (returns 1 - absolute correlation).</span>
+<span class="sd">    filename : str, optional, default=&#39;???_similarity_matrix.svg&#39;</span>
+<span class="sd">        The filename where the similarity matrices will be saved.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    None</span>
+<span class="sd">        Saves the similarity matrices CSVs to the specified files.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If an unsupported metric is specified.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Generate the distance matrix using the given metric</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">data_group</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">data_groups</span><span class="p">,</span> <span class="n">df_list</span><span class="p">):</span>
+
+            <span class="n">distance_matrix</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="n">generate_distance_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
+
+            <span class="c1"># Create the similarity matrix</span>
+            <span class="n">similarity_matrix</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">distance_matrix</span>
+
+            <span class="c1"># Export matrix</span>
+            <span class="n">export_matrix</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">data_group</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Metric </span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2"> is not supported.&quot;</span><span class="p">)</span></div>
 
 </pre></div>
 

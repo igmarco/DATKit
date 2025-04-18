@@ -22,7 +22,7 @@ copyright = '2025, Ignacio Marco-Pérez, Jónathan Heras-Vicente'
 author = 'Ignacio Marco-Pérez, Jónathan Heras-Vicente'
 
 # The full version, including alpha/beta/rc tags
-release = '0.4.1'
+release = '0.4.3'
 
 
 # -- General configuration ---------------------------------------------------
