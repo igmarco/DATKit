@@ -73,5 +73,32 @@ seaborn~=0.13.2
 setuptools>=60.0.0
 ```
 
-For detailed instructions on installation and usage, see the documentation in the **docs/** directory.
+Some features of the DATKit library, such as converting SVG images to PNG, require system-level dependencies that are not installed via ``pip``.
+
+In particular, the `Cairo` graphics library must be available on your system, as it is used internally by ``cairosvg``.
+
+Installation instructions by platform:
+
+- **Linux (Debian/Ubuntu-based)**::
+
+    sudo apt update
+    sudo apt install libcairo2
+
+- **macOS (using Homebrew)**::
+
+    brew install cairo
+
+- **Windows**:
+
+  It is recommended to install the Cairo runtime using one of the following options:
+
+  - Using Chocolatey::
+
+      choco install gtk-runtime
+
+  - Using Conda (if available in your environment)::
+
+      conda install -c conda-forge cairo
+
+If `libcairo` is not available, importing modules like ``DATKit.utils.image_utils`` or any functionality depending on ``cairosvg`` may fail, especially during documentation builds with Sphinx.
 

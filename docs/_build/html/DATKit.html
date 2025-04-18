@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DATKit package &mdash; TAUP-DATKit 0.4.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=c87aa342"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DATKit.properties package" href="DATKit.properties.html" />
+    <link rel="prev" title="DATKit" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            TAUP-DATKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DATKit</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DATKit package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DATKit.properties.html">DATKit.properties package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DATKit.tools.html">DATKit.tools package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DATKit.utils.html">DATKit.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.analysis_reporting">DATKit.analysis_reporting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.analysis_reporting.generate_pdf_report"><code class="docutils literal notranslate"><span class="pre">generate_pdf_report()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_export">DATKit.data_export module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_distance_matrix"><code class="docutils literal notranslate"><span class="pre">export_distance_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_matrix"><code class="docutils literal notranslate"><span class="pre">export_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_export.export_similarity_matrix"><code class="docutils literal notranslate"><span class="pre">export_similarity_matrix()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_filtering">DATKit.data_filtering module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_filtering.exclude_elements"><code class="docutils literal notranslate"><span class="pre">exclude_elements()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_filtering.exclude_elements_except"><code class="docutils literal notranslate"><span class="pre">exclude_elements_except()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_filtering.filter_columns_by_distance"><code class="docutils literal notranslate"><span class="pre">filter_columns_by_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_filtering.filter_elements_by_distance"><code class="docutils literal notranslate"><span class="pre">filter_elements_by_distance()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_integration">DATKit.data_integration module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_integration.build_dataframe"><code class="docutils literal notranslate"><span class="pre">build_dataframe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_integration.generate_spectra"><code class="docutils literal notranslate"><span class="pre">generate_spectra()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_loading">DATKit.data_loading module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_loading.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.data_visualization">DATKit.data_visualization module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_visualization.generate_dendrogram"><code class="docutils literal notranslate"><span class="pre">generate_dendrogram()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_visualization.generate_dendrogram_list"><code class="docutils literal notranslate"><span class="pre">generate_dendrogram_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_visualization.generate_heatmap"><code class="docutils literal notranslate"><span class="pre">generate_heatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_visualization.generate_heatmap_list"><code class="docutils literal notranslate"><span class="pre">generate_heatmap_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_visualization.generate_linechart"><code class="docutils literal notranslate"><span class="pre">generate_linechart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.data_visualization.generate_linechart_list"><code class="docutils literal notranslate"><span class="pre">generate_linechart_list()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit.distance_computing">DATKit.distance_computing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.distance_computing.compute_distance"><code class="docutils literal notranslate"><span class="pre">compute_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.distance_computing.generate_distance_matrix"><code class="docutils literal notranslate"><span class="pre">generate_distance_matrix()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.distance_computing.generate_linkage_matrix"><code class="docutils literal notranslate"><span class="pre">generate_linkage_matrix()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DATKit">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DATKit.log_uncaught_exceptions"><code class="docutils literal notranslate"><span class="pre">log_uncaught_exceptions()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TAUP-DATKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">DATKit</a></li>
+      <li class="breadcrumb-item active">DATKit package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/DATKit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="datkit-package">
+<h1>DATKit package<a class="headerlink" href="#datkit-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DATKit.properties.html">DATKit.properties package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.properties.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.properties.html#module-DATKit.properties.config_prop_loader">DATKit.properties.config_prop_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.properties.html#module-DATKit.properties.process_prop_loader">DATKit.properties.process_prop_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.properties.html#module-DATKit.properties.prop_parser">DATKit.properties.prop_parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.properties.html#DATKit.properties.prop_parser.parse_value"><code class="docutils literal notranslate"><span class="pre">parse_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.properties.html#module-DATKit.properties">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DATKit.tools.html">DATKit.tools package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.tools.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.tools.html#module-DATKit.tools.chart_tools">DATKit.tools.chart_tools module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.tools.html#DATKit.tools.chart_tools.plot_dendrogram"><code class="docutils literal notranslate"><span class="pre">plot_dendrogram()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.tools.html#DATKit.tools.chart_tools.plot_heatmap"><code class="docutils literal notranslate"><span class="pre">plot_heatmap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.tools.html#DATKit.tools.chart_tools.plot_linechart"><code class="docutils literal notranslate"><span class="pre">plot_linechart()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.tools.html#module-DATKit.tools">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DATKit.utils.html">DATKit.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#module-DATKit.utils.image_utils">DATKit.utils.image_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.image_utils.convert_svg_to_png"><code class="docutils literal notranslate"><span class="pre">convert_svg_to_png()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#module-DATKit.utils.interpolation_utils">DATKit.utils.interpolation_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.interpolation_utils.nearest"><code class="docutils literal notranslate"><span class="pre">nearest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.interpolation_utils.zeros"><code class="docutils literal notranslate"><span class="pre">zeros()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#module-DATKit.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-DATKit.analysis_reporting">
+<span id="datkit-analysis-reporting-module"></span><h2>DATKit.analysis_reporting module<a class="headerlink" href="#module-DATKit.analysis_reporting" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.analysis_reporting.generate_pdf_report">
+<span class="sig-prename descclassname"><span class="pre">DATKit.analysis_reporting.</span></span><span class="sig-name descname"><span class="pre">generate_pdf_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CSV_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kDa_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interp_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_inclusion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclusion_elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_exclusion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion_elements</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_distance_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_distance_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_distance_metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap_metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dendrogram_linkage_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dendrogram_metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dendrogram_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_items</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_fusion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linechart_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linechart.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heatmap_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heatmap.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dendrogram_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dendrogram.svg'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/analysis_reporting.html#generate_pdf_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.analysis_reporting.generate_pdf_report" title="Link to this definition"></a></dt>
+<dd><p>Generates a PDF report for TAU Data Analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the output PDF file.</p></li>
+<li><p><strong>CSV_list</strong> (<em>list</em><em> of </em><em>str</em>) – List of CSV files used in the analysis.</p></li>
+<li><p><strong>data_groups</strong> (<em>list</em><em> of </em><em>str</em>) – Names of the data groups analyzed.</p></li>
+<li><p><strong>kDa_range</strong> (<em>tuple</em><em> of </em><em>(</em><em>float</em><em>, </em><em>float</em><em>)</em>) – Range of kDa values used in the analysis.</p></li>
+<li><p><strong>interp_function</strong> (<em>str</em>) – Name of the interpolation function used.</p></li>
+<li><p><strong>filter_inclusion</strong> (<em>bool</em>) – Whether an exclusion filter was applied.</p></li>
+<li><p><strong>inclusion_elements</strong> (<em>list</em>) – Elements considered (filtering all others).</p></li>
+<li><p><strong>filter_exclusion</strong> (<em>bool</em>) – Whether an inclusion filter was applied.</p></li>
+<li><p><strong>exclusion_elements</strong> (<em>list</em>) – Elements excluded.</p></li>
+<li><p><strong>filter_distance</strong> (<em>bool</em>) – Whether a distance filter was applied.</p></li>
+<li><p><strong>filter_distance_element</strong> (<em>str</em>) – Element used as a reference for filtering.</p></li>
+<li><p><strong>filter_distance_threshold</strong> (<em>float</em>) – Maximum distance threshold for filtering.</p></li>
+<li><p><strong>filter_distance_metric</strong> (<em>str</em>) – Metric used for distance calculations in filtering.</p></li>
+<li><p><strong>heatmap_metric</strong> (<em>str</em>) – Metric used for distance calculations for the heatmap chart.</p></li>
+<li><p><strong>dendrogram_linkage_method</strong> (<em>str</em>) – Method used for linkage calculations for the dendrogram chart.</p></li>
+<li><p><strong>dendrogram_metric</strong> (<em>str</em>) – Metric used for distance calculations for the dendrogram chart.</p></li>
+<li><p><strong>dendrogram_threshold</strong> (<em>str</em>) – Threshold used for the dendrogram chart.</p></li>
+<li><p><strong>selected_items</strong> (<em>list</em><em> of </em><em>str</em>) – List of selected items from the analysis.</p></li>
+<li><p><strong>data_fusion</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – Whether data fusion in just one DataFrame was applied.</p></li>
+<li><p><strong>linechart_path</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='linechart.svg'</em>) – Path to the SVG file of the line chart. If data_fusion, then ‘???’ is replaced with the corresponding element of data_groups.</p></li>
+<li><p><strong>heatmap_path</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='heatmap.svg'</em>) – Path to the SVG file of the heatmap. If data_fusion, then ‘???’ is replaced with the corresponding element of data_groups.</p></li>
+<li><p><strong>dendrogram_path</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='dendrogram.svg'</em>) – Path to the SVG file of the dendrogram. If data_fusion, then ‘???’ is replaced with the corresponding element of data_groups.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generates and saves the PDF report to the specified filename.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>IOError</strong> – If any of the provided image paths cannot be found or read.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit.data_export">
+<span id="datkit-data-export-module"></span><h2>DATKit.data_export module<a class="headerlink" href="#module-DATKit.data_export" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_export.export_distance_matrix">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_export.</span></span><span class="sig-name descname"><span class="pre">export_distance_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'distance_matrix.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_export.html#export_distance_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_export.export_distance_matrix" title="Link to this definition"></a></dt>
+<dd><p>Generates a CSV document with the distance matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='correlation'</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='distance_matrix.svg'</em>) – The filename where the distance matrix will be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the distance matrix CSV to the specified file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_export.export_matrix">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_export.</span></span><span class="sig-name descname"><span class="pre">export_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'matrix.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_export.html#export_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_export.export_matrix" title="Link to this definition"></a></dt>
+<dd><p>Exports the matrix to a CSV file with proper formatting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> (<em>ndarray</em>) – The matrix (2D numpy array).</p></li>
+<li><p><strong>names</strong> (<em>list</em><em> of </em><em>str</em>) – The labels for rows and columns.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – The filename for the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Files are saved to disk.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_export.export_similarity_matrix">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_export.</span></span><span class="sig-name descname"><span class="pre">export_similarity_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'similarity_matrix.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_export.html#export_similarity_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_export.export_similarity_matrix" title="Link to this definition"></a></dt>
+<dd><p>Generates a CSV document with the similarity matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='correlation'</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='similarity_matrix.svg'</em>) – The filename where the similarity matrix will be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the similarity matrix CSV to the specified file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit.data_filtering">
+<span id="datkit-data-filtering-module"></span><h2>DATKit.data_filtering module<a class="headerlink" href="#module-DATKit.data_filtering" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_filtering.exclude_elements">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_filtering.</span></span><span class="sig-name descname"><span class="pre">exclude_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_filtering.html#exclude_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_filtering.exclude_elements" title="Link to this definition"></a></dt>
+<dd><p>Excludes the specified elements (columns) from the DataFrame, retaining the ‘points’ column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each column corresponds to a sample.</p></li>
+<li><p><strong>element_names</strong> (<em>list</em>) – A list of column names to exclude from the DataFrame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>filtered_df</strong> (<em>pandas.DataFrame</em>) – A new DataFrame without the excluded columns (but retaining ‘points’).</p></li>
+<li><p><strong>filtered_names</strong> (<em>list</em>) – The list of remaining column names in the filtered DataFrame (excluding ‘points’).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_filtering.exclude_elements_except">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_filtering.</span></span><span class="sig-name descname"><span class="pre">exclude_elements_except</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_filtering.html#exclude_elements_except"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_filtering.exclude_elements_except" title="Link to this definition"></a></dt>
+<dd><p>Keeps only the specified elements (columns) in the DataFrame, retaining the ‘points’ column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each column corresponds to a sample.</p></li>
+<li><p><strong>element_names</strong> (<em>list</em>) – A list of column names to keep in the DataFrame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>filtered_df</strong> (<em>pandas.DataFrame</em>) – A new DataFrame with only the specified columns and ‘points’.</p></li>
+<li><p><strong>filtered_names</strong> (<em>list</em>) – The list of column names retained in the filtered DataFrame (excluding ‘points’).</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_filtering.filter_columns_by_distance">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_filtering.</span></span><span class="sig-name descname"><span class="pre">filter_columns_by_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_filtering.html#filter_columns_by_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_filtering.filter_columns_by_distance" title="Link to this definition"></a></dt>
+<dd><p>Filters columns of the DataFrame based on their distance to a given reference column.
+Only columns with distance &lt;= threshold from the reference element will be kept.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each column (except the first) corresponds to a sample.</p></li>
+<li><p><strong>element_name</strong> (<em>str</em>) – The name of the reference element (column) to compare against.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The distance threshold. Only columns with distance &lt;= threshold to the given element will be returned.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – The distance metric to use when computing the distance matrix.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to <cite>generate_distance_matrix</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filtered_df</strong> – A new DataFrame containing only the columns that have distance &lt;= threshold to the given reference column.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_filtering.filter_elements_by_distance">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_filtering.</span></span><span class="sig-name descname"><span class="pre">filter_elements_by_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_filtering.html#filter_elements_by_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_filtering.filter_elements_by_distance" title="Link to this definition"></a></dt>
+<dd><p>Filters elements based on their distance to a given element, only keeping those with
+distance &lt;= threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_matrix</strong> (<em>numpy.ndarray</em>) – A 2D array containing pairwise distances between elements.</p></li>
+<li><p><strong>names</strong> (<em>pd.Series</em>) – A list of element names corresponding to the rows and columns of the distance matrix.</p></li>
+<li><p><strong>element_name</strong> (<em>str</em>) – The name of the element to compare against.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The distance threshold. Only elements with distance &lt;= threshold to the given element will be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>filtered_names</strong> – A list of names of elements that have distance &lt;= threshold to the given element.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit.data_integration">
+<span id="datkit-data-integration-module"></span><h2>DATKit.data_integration module<a class="headerlink" href="#module-DATKit.data_integration" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_integration.build_dataframe">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_integration.</span></span><span class="sig-name descname"><span class="pre">build_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interp_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'interp1d'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extrap_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nearest'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kDa_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kDa_range_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kDa_range_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">interp_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_integration.html#build_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_integration.build_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Construct a DataFrame with homogeneous interpolated data from multiple DataFrames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_list</strong> (<em>list</em>) – List of DataFrames, each containing a ‘kDa’ column and multiple value columns.</p></li>
+<li><p><strong>df_names</strong> (<em>list</em>) – List of names to identify each DataFrame.</p></li>
+<li><p><strong>interp_function</strong> (<em>string</em><em>, </em><em>optional</em>) – Interpolation function: ‘interp1d’, ‘CubicSpline’ (default is ‘interp1d’).</p></li>
+<li><p><strong>extrap_function</strong> (<em>string</em><em>, </em><em>optional</em>) – Extrapolation function: ‘zeros’, ‘nearest’, ‘interp1d’, ‘CubicSpline’ (default is ‘nearest’).</p></li>
+<li><p><strong>kDa_range</strong> (<em>str</em>) – Interpolation range: ‘auto’, ‘manual’ (default is ‘auto’).</p></li>
+<li><p><strong>kDa_range_start</strong> (<em>float</em><em>, </em><em>optional</em>) – If kDa_range=’manual’: Start of the interpolation range (default is 2.0).</p></li>
+<li><p><strong>kDa_range_end</strong> (<em>float</em><em>, </em><em>optional</em>) – If kDa_range=’manual’: End of the interpolation range (default is 40.0).</p></li>
+<li><p><strong>step</strong> (<em>float</em><em>, </em><em>optional</em>) – Step size between points in the interpolated range (default is 0.01).</p></li>
+<li><p><strong>interp_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments to pass to the interpolation function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A DataFrame with the interpolated data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_integration.generate_spectra">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_integration.</span></span><span class="sig-name descname"><span class="pre">generate_spectra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_integration.html#generate_spectra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_integration.generate_spectra" title="Link to this definition"></a></dt>
+<dd><p>Generate spectra matrix from dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>dataframe</em>) – A dataframe where the first row contains the names of the samples and for each sample we have its spectra</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>matrix</strong> (<em>narray</em>) – The spectra associated with each sample</p></li>
+<li><p><strong>names</strong> (<em>list</em>) – The list of names of the samples</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit.data_loading">
+<span id="datkit-data-loading-module"></span><h2>DATKit.data_loading module<a class="headerlink" href="#module-DATKit.data_loading" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_loading.load_data">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_loading.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_loading.html#load_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_loading.load_data" title="Link to this definition"></a></dt>
+<dd><p>Loads multiple DataFrames from a list of file names (CSV or Excel).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_names</strong> (<em>list</em><em> of </em><em>str</em>) – A list of file paths or names of the files to be loaded.</p></li>
+<li><p><strong>format_list</strong> (<em>list</em><em> of </em><em>dicts</em><em>, </em><em>default=</em><em>[</em><em>]</em>) – List of dicts containing:
+- ‘delimiter’: The delimiter used in CSV files (e.g., “;” for semicolon-separated files).
+- ‘decimal’: The decimal point character used in CSV files (e.g., “,” for European format_element).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>dataframes</strong> – A list of DataFrames loaded from the specified files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of pandas.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If one or more files in the list cannot be found.</p></li>
+<li><p><strong>pd.errors.ParserError</strong> – If there is an error while parsing one of the files.</p></li>
+<li><p><strong>ValueError</strong> – If the file format_element is unsupported or the sheet name is invalid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit.data_visualization">
+<span id="datkit-data-visualization-module"></span><h2>DATKit.data_visualization module<a class="headerlink" href="#module-DATKit.data_visualization" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_visualization.generate_dendrogram">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_visualization.</span></span><span class="sig-name descname"><span class="pre">generate_dendrogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'average'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dendrogram.svg'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_visualization.html#generate_dendrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_visualization.generate_dendrogram" title="Link to this definition"></a></dt>
+<dd><p>Generates a dendrogram based on hierarchical clustering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>dataframe</em>) – A dataframe where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>linkage_method</strong> (<em>string</em>) – The linkage method for building the dendrogram: ‘ward’, ‘complete’, ‘average’, ‘single’.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The threshold to form clusters.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='dendrogram.svg'</em>) – The filename where the dendrogram image will be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the dendrogram image to the specified file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_visualization.generate_dendrogram_list">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_visualization.</span></span><span class="sig-name descname"><span class="pre">generate_dendrogram_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'average'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'???_dendrogram.svg'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_visualization.html#generate_dendrogram_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_visualization.generate_dendrogram_list" title="Link to this definition"></a></dt>
+<dd><p>Generates dendrograms based on hierarchical clustering for a list of DataFrames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_list</strong> (<em>list</em><em> of </em><em>pandas.DataFrame</em>) – A list of DataFrames where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>data_groups</strong> (<em>list</em><em> of </em><em>str</em>) – A list of names for each DataFrame in df_list.</p></li>
+<li><p><strong>linkage_method</strong> (<em>string</em>) – The linkage method for building the dendrogram: ‘ward’, ‘complete’, ‘average’, ‘single’.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – The threshold to form clusters.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='???_dendrogram.svg'</em>) – The filename where each dendrogram image will be saved. ‘???’ is replced with the name in data_groups for each element.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the dendrogram images to the specified files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_visualization.generate_heatmap">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_visualization.</span></span><span class="sig-name descname"><span class="pre">generate_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'heatmap.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_visualization.html#generate_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_visualization.generate_heatmap" title="Link to this definition"></a></dt>
+<dd><p>Generates a heatmap based on the distance matrix computed from the given dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='correlation'</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='heatmap.svg'</em>) – The filename where the heatmap image will be saved.</p></li>
+<li><p><strong>decimals</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of decimals to be displayed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the heatmap image to the specified file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_visualization.generate_heatmap_list">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_visualization.</span></span><span class="sig-name descname"><span class="pre">generate_heatmap_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'???_heatmap.svg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_visualization.html#generate_heatmap_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_visualization.generate_heatmap_list" title="Link to this definition"></a></dt>
+<dd><p>Generates heatmaps based on the distance matrix computed from the given list of DataFrames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_list</strong> (<em>list</em><em> of </em><em>pandas.DataFrame</em>) – A list of DataFrames where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>data_groups</strong> (<em>list</em><em> of </em><em>str</em>) – A list of names for each DataFrame in df_list.</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='correlation'</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='???_heatmap.svg'</em>) – The filename where each heatmap image will be saved. ‘???’ is replced with the name in data_groups for each element.</p></li>
+<li><p><strong>decimals</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of decimals to be displayed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the heatmap images to the specified files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_visualization.generate_linechart">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_visualization.</span></span><span class="sig-name descname"><span class="pre">generate_linechart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linechart.svg'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_visualization.html#generate_linechart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_visualization.generate_linechart" title="Link to this definition"></a></dt>
+<dd><p>Generates a linechart based on the interpolated data from the given DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='linechart.svg'</em>) – The filename where the linechart image will be saved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the linechart image to the specified file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.data_visualization.generate_linechart_list">
+<span class="sig-prename descclassname"><span class="pre">DATKit.data_visualization.</span></span><span class="sig-name descname"><span class="pre">generate_linechart_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'???_linechart.svg'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/data_visualization.html#generate_linechart_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.data_visualization.generate_linechart_list" title="Link to this definition"></a></dt>
+<dd><p>Generates linecharts based on the interpolated data from the given list of DataFrames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_list</strong> (<em>list</em><em> of </em><em>pandas.DataFrame</em>) – A list of DataFrames where each row corresponds to a sample and columns contain features.</p></li>
+<li><p><strong>data_groups</strong> (<em>list</em><em> of </em><em>str</em>) – A list of names for each DataFrame in df_list.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='???_linechart.svg'</em>) – The filename where each linechart image will be saved. ‘???’ is replced with the name in data_groups for each element.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saves the linechart images to the specified files.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit.distance_computing">
+<span id="datkit-distance-computing-module"></span><h2>DATKit.distance_computing module<a class="headerlink" href="#module-DATKit.distance_computing" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.distance_computing.compute_distance">
+<span class="sig-prename descclassname"><span class="pre">DATKit.distance_computing.</span></span><span class="sig-name descname"><span class="pre">compute_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/distance_computing.html#compute_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.distance_computing.compute_distance" title="Link to this definition"></a></dt>
+<dd><p>Compute the distance between two spectra vectors using various distance metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector1</strong> (<em>np.ndarray</em>)</p></li>
+<li><p><strong>vector2</strong> (<em>np.ndarray</em>) – Must have the same size as vector1.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – The metric to use for computing the distance. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments for specific metrics (e.g., <cite>p</cite> for Minkowski distance).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The distance between vector1 and vector2 using the given metric.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If vector1 and vector2 have different sizes or if an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.distance_computing.generate_distance_matrix">
+<span class="sig-prename descclassname"><span class="pre">DATKit.distance_computing.</span></span><span class="sig-name descname"><span class="pre">generate_distance_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'correlation'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/distance_computing.html#generate_distance_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.distance_computing.generate_distance_matrix" title="Link to this definition"></a></dt>
+<dd><p>Generates the distance matrix of a dataframe using a specified distance metric.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each column (except the first) corresponds to a sample,
+and rows contain the measured spectra values.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires p in kwargs).
+- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
+- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to <cite>compute_distance</cite> (e.g., <cite>p</cite> for Minkowski distance).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>matrix</strong> (<em>numpy.ndarray</em>) – A symmetric matrix where entry (i, j) represents the distance between sample i and sample j.</p></li>
+<li><p><strong>names</strong> (<em>list</em>) – List of sample names corresponding to the columns in the input DataFrame (excluding the first column).</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If an unsupported metric is specified.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.distance_computing.generate_linkage_matrix">
+<span class="sig-prename descclassname"><span class="pre">DATKit.distance_computing.</span></span><span class="sig-name descname"><span class="pre">generate_linkage_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linkage_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'average'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/distance_computing.html#generate_linkage_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.distance_computing.generate_linkage_matrix" title="Link to this definition"></a></dt>
+<dd><p>Generates the linkage matrix from a precomputed distance matrix using hierarchical clustering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_matrix</strong> (<em>ndarray</em>) – A precomputed distance matrix (n_samples x n_samples).</p></li>
+<li><p><strong>linkage_method</strong> (<em>string</em>) – The linkage method for building the dendrogram: ‘ward’, ‘complete’, ‘average’, ‘single’.</p></li>
+<li><p><strong>distance_threshold</strong> (<em>float</em>) – The threshold for stopping the clustering process.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>linkage_matrix</strong> – A linkage matrix that can be used to generate the dendrogram.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-DATKit">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DATKit" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.log_uncaught_exceptions">
+<span class="sig-prename descclassname"><span class="pre">DATKit.</span></span><span class="sig-name descname"><span class="pre">log_uncaught_exceptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_traceback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit.html#log_uncaught_exceptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.log_uncaught_exceptions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="DATKit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DATKit.properties.html" class="btn btn-neutral float-right" title="DATKit.properties package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ignacio Marco-Pérez, Jónathan Heras-Vicente.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

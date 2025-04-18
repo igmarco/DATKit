@@ -4,7 +4,7 @@ from scipy.cluster.hierarchy import dendrogram
 import os
 
 
-def plot_linechart(spectra, x, element_names, name='linechart.svg', x_label='kDa', **kwargs):
+def plot_linechart(spectra, x, element_names, filename='linechart.svg', title='Interpolated Data Plot', x_label='kDa', **kwargs):
     """
     Plots the interpolated data from the given DataFrame.
 
@@ -18,6 +18,8 @@ def plot_linechart(spectra, x, element_names, name='linechart.svg', x_label='kDa
         List of element names.
     name : str, optional
         The filename where the plot will be saved (default is 'plot.png').
+    title : str, optional
+        The title for the chart (default is 'Interpolated Data Plot').
     x_label : str, optional
         The label for the domain (default is 'kDa').
     kwargs : dict, optional
@@ -41,7 +43,7 @@ def plot_linechart(spectra, x, element_names, name='linechart.svg', x_label='kDa
     plt.ylabel('Values')
 
     # Plot title
-    plt.title('Interpolated Data Plot')
+    plt.title(title)
 
     # Adjust layout to prevent cutting off elements
     plt.tight_layout()
@@ -49,11 +51,11 @@ def plot_linechart(spectra, x, element_names, name='linechart.svg', x_label='kDa
     # Save and display the plot
     # chart_path = os.path.join(os.path.dirname(__file__), '../' + name)
     # plt.savefig(chart_path, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
-    plt.savefig(name, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
+    plt.savefig(filename, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
     plt.show()
 
 
-def plot_heatmap(similarity_matrix, names, metric="", name='heatmap.svg'):
+def plot_heatmap(similarity_matrix, names, metric="", filename='heatmap.svg', title='Heatmap', decimals=1):
     """
     Plots a heatmap based on the provided similarity matrix.
 
@@ -65,8 +67,12 @@ def plot_heatmap(similarity_matrix, names, metric="", name='heatmap.svg'):
         The sample names to use as labels for the heatmap axes.
     metric : str, optional
         The metric name to be displayed in the plot title.
-    name : str, optional, default='heatmap.svg'
+    filename : str, optional, default='heatmap.svg'
         The filename where the heatmap image will be saved.
+    title : str, optional
+        The title for the chart (default is 'Heatmap').
+    decimals: int, optional
+        The number of decimals to be displayed.
 
     Returns
     ----------
@@ -80,14 +86,14 @@ def plot_heatmap(similarity_matrix, names, metric="", name='heatmap.svg'):
     plt.figure(figsize=(len(names) * 1.5 + 1, len(names) * 1.5))
 
     # Create the heatmap
-    ax = heatmap(similarity_matrix, xticklabels=names, yticklabels=names, annot=True)
+    ax = heatmap(similarity_matrix, xticklabels=names, yticklabels=names, annot=True, fmt=f".{decimals}f")
 
     # Rotate the x-axis and y-axis labels to make them horizontal
     plt.xticks(rotation=35)
     plt.yticks(rotation=35)
 
     # Define the title
-    title = 'Heatmap'
+    title = title
 
     # Conditionally append information to the title if not empty
     if metric != "":
@@ -106,11 +112,11 @@ def plot_heatmap(similarity_matrix, names, metric="", name='heatmap.svg'):
     # Save and display the plot
     # chart_path = os.path.join(os.path.dirname(__file__), '../' + name)
     # plt.savefig(chart_path, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
-    plt.savefig(name, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
+    plt.savefig(filename, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
     plt.show()
 
 
-def plot_dendrogram(linkage_matrix, threshold=0, labels=None, name='dendrogram.svg', linkage_method="", metric=""):
+def plot_dendrogram(linkage_matrix, threshold=0, labels=None, filename='dendrogram.svg', title='Dendrogram', linkage_method="", metric=""):
     """
     Plots a dendrogram using the provided linkage matrix.
 
@@ -122,8 +128,10 @@ def plot_dendrogram(linkage_matrix, threshold=0, labels=None, name='dendrogram.s
         If threshold != 0.: The threshold to color clusters and add a horizontal line in the plot.
     labels : Optional[ndarray]
         Labels for the samples, displayed on the dendrogram leaves.
-    name : str
+    filename : str
         The filename where the dendrogram image will be saved.
+    title : str, optional
+        The title for the chart (default is 'Dendrogram').
     linkage_method : str
         The linkage method name
     metric : str
@@ -154,7 +162,7 @@ def plot_dendrogram(linkage_matrix, threshold=0, labels=None, name='dendrogram.s
     plt.ylabel("Distances")
 
     # Define the title
-    title = 'Dendrogram'
+    title = title
 
     # Conditionally append information to the title if not empty
     if metric != "" and linkage_method != "":
@@ -177,5 +185,5 @@ def plot_dendrogram(linkage_matrix, threshold=0, labels=None, name='dendrogram.s
     # Save and display the plot
     # chart_path = os.path.join(os.path.dirname(__file__), '../' + name)
     # plt.savefig(chart_path, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
-    plt.savefig(name, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
+    plt.savefig(filename, bbox_inches='tight')  # Use bbox_inches='tight' to avoid clipping
     plt.show()

@@ -26,6 +26,7 @@ def generate_pdf_report(
         dendrogram_metric,
         dendrogram_threshold,
         selected_items,
+        data_fusion=True,
         linechart_path="linechart.svg",
         heatmap_path="heatmap.svg",
         dendrogram_path="dendrogram.svg",
@@ -71,12 +72,14 @@ def generate_pdf_report(
         Threshold used for the dendrogram chart.
     selected_items : list of str
         List of selected items from the analysis.
-    linechart_path : str
-        Path to the SVG file of the line chart.
-    heatmap_path : str
-        Path to the SVG file of the heatmap.
-    dendrogram_path : str
-        Path to the SVG file of the dendrogram.
+    data_fusion : bool, optional, default=True
+        Whether data fusion in just one DataFrame was applied.
+    linechart_path : str, optional, default='linechart.svg'
+        Path to the SVG file of the line chart. If data_fusion, then '???' is replaced with the corresponding element of data_groups.
+    heatmap_path : str, optional, default='heatmap.svg'
+        Path to the SVG file of the heatmap. If data_fusion, then '???' is replaced with the corresponding element of data_groups.
+    dendrogram_path : str, optional, default='dendrogram.svg'
+        Path to the SVG file of the dendrogram. If data_fusion, then '???' is replaced with the corresponding element of data_groups.
 
     Returns
     -------
@@ -110,30 +113,32 @@ def generate_pdf_report(
     CSV_info = """
     <b>CSV info</b><br/>
     CSV_list                  = {0}<br/>
-    data_groups               = {1}<br/><br/>
+    data_groups               = {1}<br/>
+    data_fusion               = {2}<br/><br/>
     <b>kDa values info</b><br/>
-    kDa_range                 = {2}<br/>
-    interp_function           = {3}<br/><br/>
+    kDa_range                 = {3}<br/>
+    interp_function           = {4}<br/><br/>
     <b>Filtering info</b><br/>
-    filter_inclusion          = {4}<br/>
-    inclusion_elements        = {5}<br/>
-    filter_exclusion          = {6}<br/>
-    exclusion_elements        = {7}<br/>
-    filter_distance           = {8}<br/>
-    filter_distance_element   = {9}<br/>
-    filter_distance_threshold = {10}<br/>
-    filter_distance_metric    = {11}<br/><br/>
+    filter_inclusion          = {5}<br/>
+    inclusion_elements        = {6}<br/>
+    filter_exclusion          = {7}<br/>
+    exclusion_elements        = {8}<br/>
+    filter_distance           = {9}<br/>
+    filter_distance_element   = {10}<br/>
+    filter_distance_threshold = {11}<br/>
+    filter_distance_metric    = {12}<br/><br/>
     <b>Charts info</b><br/>
-    heatmap_metric            = {12}<br/>
-    dendrogram_linkage_method = {13}<br/>
-    dendrogram_metric         = {14}<br/>
-    dendrogram_threshold      = {15}
+    heatmap_metric            = {13}<br/>
+    dendrogram_linkage_method = {14}<br/>
+    dendrogram_metric         = {15}<br/>
+    dendrogram_threshold      = {16}
     """
 
     # Replace placeholders with actual values
     CSV_info = CSV_info.format(
         CSV_list,
         data_groups,
+        data_fusion,
         kDa_range,
         interp_function,
         filter_inclusion,
@@ -157,62 +162,137 @@ def generate_pdf_report(
     elements.append(Paragraph(selected_items_text, styles['BodyText']))
     elements.append(Spacer(1, 24))
 
-    # Add a page break before the Line Chart section
-    elements.append(PageBreak())
+    
+    if data_fusion:
 
-    # Charts Section
-    elements.append(Paragraph("Charts", styles["Heading2"]))
+        # Add a page break before the Line Chart section
+        elements.append(PageBreak())
 
-    # Line Chart Subsection
-    elements.append(Paragraph("Line Chart", styles["Heading3"]))
-    try:
-        # Convert SVG image to PNG
-        if linechart_path.endswith(".svg"):
-            # linechart_path = os.path.join(os.path.dirname(__file__), linechart_path)
-            linechart_path = convert_svg_to_png(linechart_path)
+        # Charts Section
+        elements.append(Paragraph("Charts", styles["Heading2"]))
 
-        # Create an Image object with width 450, preserving aspect ratio
-        line_chart = Image(linechart_path, width=450)
-        line_chart.drawHeight = line_chart.drawWidth * line_chart.imageHeight / line_chart.imageWidth
-        elements.append(line_chart)
-    except IOError:
-        elements.append(Paragraph("Error: Could not load Line Chart image.", styles["Normal"]))
-    elements.append(Spacer(1, 24))
+        # Line Chart Subsection
+        elements.append(Paragraph("Line Chart", styles["Heading3"]))
+        try:
+            # Convert SVG image to PNG
+            if linechart_path.endswith(".svg"):
+                # linechart_path = os.path.join(os.path.dirname(__file__), linechart_path)
+                linechart_path = convert_svg_to_png(linechart_path)
 
-    # Add a page break between chart subsections
-    elements.append(PageBreak())
+            # Create an Image object with width 450, preserving aspect ratio
+            line_chart = Image(linechart_path, width=450)
+            line_chart.drawHeight = line_chart.drawWidth * line_chart.imageHeight / line_chart.imageWidth
+            elements.append(line_chart)
+        except IOError:
+            elements.append(Paragraph("Error: Could not load Line Chart image.", styles["Normal"]))
+        elements.append(Spacer(1, 24))
 
-    # Heatmap Subsection
-    elements.append(Paragraph("Heatmap", styles["Heading3"]))
-    try:
-        # Convert SVG image to PNG
-        if heatmap_path.endswith(".svg"):
-            # heatmap_path = os.path.join(os.path.dirname(__file__), heatmap_path)
-            heatmap_path = convert_svg_to_png(heatmap_path)
-        # Create an Image object with width 450, preserving aspect ratio
-        heatmap = Image(heatmap_path, width=450)
-        heatmap.drawHeight = heatmap.drawWidth * heatmap.imageHeight / heatmap.imageWidth
-        elements.append(heatmap)
-    except IOError:
-        elements.append(Paragraph("Error: Could not load Heatmap image.", styles["Normal"]))
-    elements.append(Spacer(1, 24))
+        # Add a page break between chart subsections
+        elements.append(PageBreak())
 
-    # Add a page break between chart subsections
-    elements.append(PageBreak())
+        # Heatmap Subsection
+        elements.append(Paragraph("Heatmap", styles["Heading3"]))
+        try:
+            # Convert SVG image to PNG
+            if heatmap_path.endswith(".svg"):
+                # heatmap_path = os.path.join(os.path.dirname(__file__), heatmap_path)
+                heatmap_path = convert_svg_to_png(heatmap_path)
+            # Create an Image object with width 450, preserving aspect ratio
+            heatmap = Image(heatmap_path, width=450)
+            heatmap.drawHeight = heatmap.drawWidth * heatmap.imageHeight / heatmap.imageWidth
+            elements.append(heatmap)
+        except IOError:
+            elements.append(Paragraph("Error: Could not load Heatmap image.", styles["Normal"]))
+        elements.append(Spacer(1, 24))
 
-    # Dendrogram Subsection
-    elements.append(Paragraph("Dendrogram", styles["Heading3"]))
-    try:
-        # Convert SVG image to PNG
-        if dendrogram_path.endswith(".svg"):
-            # dendrogram_path = os.path.join(os.path.dirname(__file__), dendrogram_path)
-            dendrogram_path = convert_svg_to_png(dendrogram_path)
-        # Create an Image object with width 450, preserving aspect ratio
-        dendrogram = Image(dendrogram_path, width=450)
-        dendrogram.drawHeight = dendrogram.drawWidth * dendrogram.imageHeight / dendrogram.imageWidth
-        elements.append(dendrogram)
-    except IOError:
-        elements.append(Paragraph("Error: Could not load Dendrogram image.", styles["Normal"]))
+        # Add a page break between chart subsections
+        elements.append(PageBreak())
+
+        # Dendrogram Subsection
+        elements.append(Paragraph("Dendrogram", styles["Heading3"]))
+        try:
+            # Convert SVG image to PNG
+            if dendrogram_path.endswith(".svg"):
+                # dendrogram_path = os.path.join(os.path.dirname(__file__), dendrogram_path)
+                dendrogram_path = convert_svg_to_png(dendrogram_path)
+            # Create an Image object with width 450, preserving aspect ratio
+            dendrogram = Image(dendrogram_path, width=450)
+            dendrogram.drawHeight = dendrogram.drawWidth * dendrogram.imageHeight / dendrogram.imageWidth
+            elements.append(dendrogram)
+        except IOError:
+            elements.append(Paragraph("Error: Could not load Dendrogram image.", styles["Normal"]))
+
+    else:
+
+        # Add a page break before the Line Chart section
+        elements.append(PageBreak())
+
+        # Charts Section
+        elements.append(Paragraph("Charts", styles["Heading2"]))
+
+        # Line Chart Subsection
+        elements.append(Paragraph("Line Charts", styles["Heading3"]))
+
+        for data_group in data_groups:
+            linechart_path_for_data_group = linechart_path.replace('???', data_group)
+            try:
+                # Convert SVG image to PNG
+                if linechart_path_for_data_group.endswith(".svg"):
+                    # linechart_path_for_data_group = os.path.join(os.path.dirname(__file__), linechart_path_for_data_group)
+                    linechart_path_for_data_group = convert_svg_to_png(linechart_path_for_data_group)
+
+                # Create an Image object with width 450, preserving aspect ratio
+                line_chart = Image(linechart_path_for_data_group, width=450)
+                line_chart.drawHeight = line_chart.drawWidth * line_chart.imageHeight / line_chart.imageWidth
+                elements.append(line_chart)
+                elements.append(Spacer(1, 2))
+            except IOError:
+                elements.append(Paragraph("Error: Could not load Line Chart image.", styles["Normal"]))
+            elements.append(Spacer(1, 24))
+
+        # Add a page break between chart subsections
+        elements.append(PageBreak())
+
+        # Heatmap Subsection
+        elements.append(Paragraph("Heatmaps", styles["Heading3"]))
+
+        for data_group in data_groups:
+            heatmap_path_for_data_group = heatmap_path.replace('???', data_group)
+            try:
+                # Convert SVG image to PNG
+                if heatmap_path_for_data_group.endswith(".svg"):
+                    # heatmap_path_for_data_group = os.path.join(os.path.dirname(__file__), heatmap_path_for_data_group)
+                    heatmap_path_for_data_group = convert_svg_to_png(heatmap_path_for_data_group)
+                # Create an Image object with width 450, preserving aspect ratio
+                heatmap = Image(heatmap_path_for_data_group, width=450)
+                heatmap.drawHeight = heatmap.drawWidth * heatmap.imageHeight / heatmap.imageWidth
+                elements.append(heatmap)
+                elements.append(Spacer(1, 2))
+            except IOError:
+                elements.append(Paragraph("Error: Could not load Heatmap image.", styles["Normal"]))
+            elements.append(Spacer(1, 24))
+
+        # Add a page break between chart subsections
+        elements.append(PageBreak())
+
+        # Dendrogram Subsection
+        elements.append(Paragraph("Dendrograms", styles["Heading3"]))
+
+        for data_group in data_groups:
+            dendrogram_path_for_data_group = dendrogram_path.replace('???', data_group)
+            try:
+                # Convert SVG image to PNG
+                if dendrogram_path_for_data_group.endswith(".svg"):
+                    # dendrogram_path_for_data_group = os.path.join(os.path.dirname(__file__), dendrogram_path_for_data_group)
+                    dendrogram_path_for_data_group = convert_svg_to_png(dendrogram_path_for_data_group)
+                # Create an Image object with width 450, preserving aspect ratio
+                dendrogram = Image(dendrogram_path_for_data_group, width=450)
+                dendrogram.drawHeight = dendrogram.drawWidth * dendrogram.imageHeight / dendrogram.imageWidth
+                elements.append(dendrogram)
+                elements.append(Spacer(1, 2))
+            except IOError:
+                elements.append(Paragraph("Error: Could not load Dendrogram image.", styles["Normal"]))
+
 
     # Build the PDF
     doc.build(elements)

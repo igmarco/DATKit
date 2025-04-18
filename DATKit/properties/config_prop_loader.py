@@ -1,7 +1,7 @@
 import configparser
 import os
 
-# Defining the ConfigParser
+# Crear un objeto ConfigParser
 config_config = configparser.ConfigParser()
 
 config_path = os.path.join(os.path.dirname(__file__), 'config.properties')

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DATKit.analysis_reporting &mdash; TAUP-DATKit 0.4.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=c87aa342"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            TAUP-DATKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">DATKit</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">TAUP-DATKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../DATKit.html">DATKit</a></li>
+      <li class="breadcrumb-item active">DATKit.analysis_reporting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for DATKit.analysis_reporting</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">reportlab.lib.pagesizes</span><span class="w"> </span><span class="kn">import</span> <span class="n">letter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reportlab.lib.styles</span><span class="w"> </span><span class="kn">import</span> <span class="n">getSampleStyleSheet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reportlab.platypus</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleDocTemplate</span><span class="p">,</span> <span class="n">Paragraph</span><span class="p">,</span> <span class="n">Spacer</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">PageBreak</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">DATKit.utils.image_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_svg_to_png</span>
+
+<span class="c1"># import os</span>
+
+
+<div class="viewcode-block" id="generate_pdf_report">
+<a class="viewcode-back" href="../../DATKit.html#DATKit.analysis_reporting.generate_pdf_report">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_pdf_report</span><span class="p">(</span>
+        <span class="n">filename</span><span class="p">,</span>
+        <span class="n">CSV_list</span><span class="p">,</span>
+        <span class="n">data_groups</span><span class="p">,</span>
+        <span class="n">kDa_range</span><span class="p">,</span>
+        <span class="n">interp_function</span><span class="p">,</span>
+        <span class="n">filter_inclusion</span><span class="p">,</span>
+        <span class="n">inclusion_elements</span><span class="p">,</span>
+        <span class="n">filter_exclusion</span><span class="p">,</span>
+        <span class="n">exclusion_elements</span><span class="p">,</span>
+        <span class="n">filter_distance</span><span class="p">,</span>
+        <span class="n">filter_distance_element</span><span class="p">,</span>
+        <span class="n">filter_distance_threshold</span><span class="p">,</span>
+        <span class="n">filter_distance_metric</span><span class="p">,</span>
+        <span class="n">heatmap_metric</span><span class="p">,</span>
+        <span class="n">dendrogram_linkage_method</span><span class="p">,</span>
+        <span class="n">dendrogram_metric</span><span class="p">,</span>
+        <span class="n">dendrogram_threshold</span><span class="p">,</span>
+        <span class="n">selected_items</span><span class="p">,</span>
+        <span class="n">data_fusion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">linechart_path</span><span class="o">=</span><span class="s2">&quot;linechart.svg&quot;</span><span class="p">,</span>
+        <span class="n">heatmap_path</span><span class="o">=</span><span class="s2">&quot;heatmap.svg&quot;</span><span class="p">,</span>
+        <span class="n">dendrogram_path</span><span class="o">=</span><span class="s2">&quot;dendrogram.svg&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a PDF report for TAU Data Analysis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Name of the output PDF file.</span>
+<span class="sd">    CSV_list : list of str</span>
+<span class="sd">        List of CSV files used in the analysis.</span>
+<span class="sd">    data_groups : list of str</span>
+<span class="sd">        Names of the data groups analyzed.</span>
+<span class="sd">    kDa_range : tuple of (float, float)</span>
+<span class="sd">        Range of kDa values used in the analysis.</span>
+<span class="sd">    interp_function : str</span>
+<span class="sd">        Name of the interpolation function used.</span>
+<span class="sd">    filter_inclusion : bool</span>
+<span class="sd">        Whether an exclusion filter was applied.</span>
+<span class="sd">    inclusion_elements : list</span>
+<span class="sd">        Elements considered (filtering all others).</span>
+<span class="sd">    filter_exclusion : bool</span>
+<span class="sd">        Whether an inclusion filter was applied.</span>
+<span class="sd">    exclusion_elements : list</span>
+<span class="sd">        Elements excluded.</span>
+<span class="sd">    filter_distance : bool</span>
+<span class="sd">        Whether a distance filter was applied.</span>
+<span class="sd">    filter_distance_element : str</span>
+<span class="sd">        Element used as a reference for filtering.</span>
+<span class="sd">    filter_distance_threshold : float</span>
+<span class="sd">        Maximum distance threshold for filtering.</span>
+<span class="sd">    filter_distance_metric : str</span>
+<span class="sd">        Metric used for distance calculations in filtering.</span>
+<span class="sd">    heatmap_metric: str</span>
+<span class="sd">        Metric used for distance calculations for the heatmap chart.</span>
+<span class="sd">    dendrogram_linkage_method: str</span>
+<span class="sd">        Method used for linkage calculations for the dendrogram chart.</span>
+<span class="sd">    dendrogram_metric: str</span>
+<span class="sd">        Metric used for distance calculations for the dendrogram chart.</span>
+<span class="sd">    dendrogram_threshold: str</span>
+<span class="sd">        Threshold used for the dendrogram chart.</span>
+<span class="sd">    selected_items : list of str</span>
+<span class="sd">        List of selected items from the analysis.</span>
+<span class="sd">    data_fusion : bool, optional, default=True</span>
+<span class="sd">        Whether data fusion in just one DataFrame was applied.</span>
+<span class="sd">    linechart_path : str, optional, default=&#39;linechart.svg&#39;</span>
+<span class="sd">        Path to the SVG file of the line chart. If data_fusion, then &#39;???&#39; is replaced with the corresponding element of data_groups.</span>
+<span class="sd">    heatmap_path : str, optional, default=&#39;heatmap.svg&#39;</span>
+<span class="sd">        Path to the SVG file of the heatmap. If data_fusion, then &#39;???&#39; is replaced with the corresponding element of data_groups.</span>
+<span class="sd">    dendrogram_path : str, optional, default=&#39;dendrogram.svg&#39;</span>
+<span class="sd">        Path to the SVG file of the dendrogram. If data_fusion, then &#39;???&#39; is replaced with the corresponding element of data_groups.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">        Generates and saves the PDF report to the specified filename.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    IOError</span>
+<span class="sd">        If any of the provided image paths cannot be found or read.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a PDF document with a title</span>
+    <span class="c1"># report_path = os.path.join(os.path.dirname(__file__), filename)</span>
+    <span class="c1"># doc = SimpleDocTemplate(report_path, pagesize=letter)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">SimpleDocTemplate</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">pagesize</span><span class="o">=</span><span class="n">letter</span><span class="p">)</span>
+    <span class="n">styles</span> <span class="o">=</span> <span class="n">getSampleStyleSheet</span><span class="p">()</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Title and Subtitle</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;TAU Data Analysis Report&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">])</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                         <span class="c1"># &quot;&quot;&quot; This report aims to obtain an analysis from collected data in the context of the</span>
+                         <span class="c1"># project...&lt;br/&gt; ...&lt;br/&gt; ... &quot;&quot;&quot;,</span>
+                         <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]</span>
+                         <span class="p">)</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">title</span><span class="p">,</span> <span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">subtitle</span><span class="p">,</span> <span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">)])</span>
+
+    <span class="c1"># CSV and kDa Info Section</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Reporting info&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s1">&#39;Heading2&#39;</span><span class="p">]))</span>
+
+    <span class="n">CSV_info</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;b&gt;CSV info&lt;/b&gt;&lt;br/&gt;</span>
+<span class="s2">    CSV_list                  = </span><span class="si">{0}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    data_groups               = </span><span class="si">{1}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    data_fusion               = </span><span class="si">{2}</span><span class="s2">&lt;br/&gt;&lt;br/&gt;</span>
+<span class="s2">    &lt;b&gt;kDa values info&lt;/b&gt;&lt;br/&gt;</span>
+<span class="s2">    kDa_range                 = </span><span class="si">{3}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    interp_function           = </span><span class="si">{4}</span><span class="s2">&lt;br/&gt;&lt;br/&gt;</span>
+<span class="s2">    &lt;b&gt;Filtering info&lt;/b&gt;&lt;br/&gt;</span>
+<span class="s2">    filter_inclusion          = </span><span class="si">{5}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    inclusion_elements        = </span><span class="si">{6}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    filter_exclusion          = </span><span class="si">{7}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    exclusion_elements        = </span><span class="si">{8}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    filter_distance           = </span><span class="si">{9}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    filter_distance_element   = </span><span class="si">{10}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    filter_distance_threshold = </span><span class="si">{11}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    filter_distance_metric    = </span><span class="si">{12}</span><span class="s2">&lt;br/&gt;&lt;br/&gt;</span>
+<span class="s2">    &lt;b&gt;Charts info&lt;/b&gt;&lt;br/&gt;</span>
+<span class="s2">    heatmap_metric            = </span><span class="si">{13}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    dendrogram_linkage_method = </span><span class="si">{14}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    dendrogram_metric         = </span><span class="si">{15}</span><span class="s2">&lt;br/&gt;</span>
+<span class="s2">    dendrogram_threshold      = </span><span class="si">{16}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Replace placeholders with actual values</span>
+    <span class="n">CSV_info</span> <span class="o">=</span> <span class="n">CSV_info</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">CSV_list</span><span class="p">,</span>
+        <span class="n">data_groups</span><span class="p">,</span>
+        <span class="n">data_fusion</span><span class="p">,</span>
+        <span class="n">kDa_range</span><span class="p">,</span>
+        <span class="n">interp_function</span><span class="p">,</span>
+        <span class="n">filter_inclusion</span><span class="p">,</span>
+        <span class="n">inclusion_elements</span><span class="p">,</span>
+        <span class="n">filter_exclusion</span><span class="p">,</span>
+        <span class="n">exclusion_elements</span><span class="p">,</span>
+        <span class="n">filter_distance</span><span class="p">,</span>
+        <span class="n">filter_distance_element</span><span class="p">,</span>
+        <span class="n">filter_distance_threshold</span><span class="p">,</span>
+        <span class="n">filter_distance_metric</span><span class="p">,</span>
+        <span class="n">heatmap_metric</span><span class="p">,</span>
+        <span class="n">dendrogram_linkage_method</span><span class="p">,</span>
+        <span class="n">dendrogram_metric</span><span class="p">,</span>
+        <span class="n">dendrogram_threshold</span><span class="p">)</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="n">CSV_info</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;br/&gt;&quot;</span><span class="p">),</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+
+    <span class="c1"># Selected items section</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Selected Items&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s1">&#39;Heading2&#39;</span><span class="p">]))</span>
+    <span class="n">selected_items_text</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">selected_items</span><span class="p">)</span> <span class="k">if</span> <span class="n">selected_items</span> <span class="k">else</span> <span class="s2">&quot;No items selected.&quot;</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="n">selected_items_text</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s1">&#39;BodyText&#39;</span><span class="p">]))</span>
+    <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+
+    
+    <span class="k">if</span> <span class="n">data_fusion</span><span class="p">:</span>
+
+        <span class="c1"># Add a page break before the Line Chart section</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+
+        <span class="c1"># Charts Section</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Charts&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading2&quot;</span><span class="p">]))</span>
+
+        <span class="c1"># Line Chart Subsection</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Line Chart&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading3&quot;</span><span class="p">]))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Convert SVG image to PNG</span>
+            <span class="k">if</span> <span class="n">linechart_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.svg&quot;</span><span class="p">):</span>
+                <span class="c1"># linechart_path = os.path.join(os.path.dirname(__file__), linechart_path)</span>
+                <span class="n">linechart_path</span> <span class="o">=</span> <span class="n">convert_svg_to_png</span><span class="p">(</span><span class="n">linechart_path</span><span class="p">)</span>
+
+            <span class="c1"># Create an Image object with width 450, preserving aspect ratio</span>
+            <span class="n">line_chart</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">linechart_path</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+            <span class="n">line_chart</span><span class="o">.</span><span class="n">drawHeight</span> <span class="o">=</span> <span class="n">line_chart</span><span class="o">.</span><span class="n">drawWidth</span> <span class="o">*</span> <span class="n">line_chart</span><span class="o">.</span><span class="n">imageHeight</span> <span class="o">/</span> <span class="n">line_chart</span><span class="o">.</span><span class="n">imageWidth</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_chart</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Error: Could not load Line Chart image.&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+
+        <span class="c1"># Add a page break between chart subsections</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+
+        <span class="c1"># Heatmap Subsection</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Heatmap&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading3&quot;</span><span class="p">]))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Convert SVG image to PNG</span>
+            <span class="k">if</span> <span class="n">heatmap_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.svg&quot;</span><span class="p">):</span>
+                <span class="c1"># heatmap_path = os.path.join(os.path.dirname(__file__), heatmap_path)</span>
+                <span class="n">heatmap_path</span> <span class="o">=</span> <span class="n">convert_svg_to_png</span><span class="p">(</span><span class="n">heatmap_path</span><span class="p">)</span>
+            <span class="c1"># Create an Image object with width 450, preserving aspect ratio</span>
+            <span class="n">heatmap</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">heatmap_path</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+            <span class="n">heatmap</span><span class="o">.</span><span class="n">drawHeight</span> <span class="o">=</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">drawWidth</span> <span class="o">*</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">imageHeight</span> <span class="o">/</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">imageWidth</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Error: Could not load Heatmap image.&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+
+        <span class="c1"># Add a page break between chart subsections</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+
+        <span class="c1"># Dendrogram Subsection</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Dendrogram&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading3&quot;</span><span class="p">]))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Convert SVG image to PNG</span>
+            <span class="k">if</span> <span class="n">dendrogram_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.svg&quot;</span><span class="p">):</span>
+                <span class="c1"># dendrogram_path = os.path.join(os.path.dirname(__file__), dendrogram_path)</span>
+                <span class="n">dendrogram_path</span> <span class="o">=</span> <span class="n">convert_svg_to_png</span><span class="p">(</span><span class="n">dendrogram_path</span><span class="p">)</span>
+            <span class="c1"># Create an Image object with width 450, preserving aspect ratio</span>
+            <span class="n">dendrogram</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">dendrogram_path</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+            <span class="n">dendrogram</span><span class="o">.</span><span class="n">drawHeight</span> <span class="o">=</span> <span class="n">dendrogram</span><span class="o">.</span><span class="n">drawWidth</span> <span class="o">*</span> <span class="n">dendrogram</span><span class="o">.</span><span class="n">imageHeight</span> <span class="o">/</span> <span class="n">dendrogram</span><span class="o">.</span><span class="n">imageWidth</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dendrogram</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Error: Could not load Dendrogram image.&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="c1"># Add a page break before the Line Chart section</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+
+        <span class="c1"># Charts Section</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Charts&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading2&quot;</span><span class="p">]))</span>
+
+        <span class="c1"># Line Chart Subsection</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Line Charts&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading3&quot;</span><span class="p">]))</span>
+
+        <span class="k">for</span> <span class="n">data_group</span> <span class="ow">in</span> <span class="n">data_groups</span><span class="p">:</span>
+            <span class="n">linechart_path_for_data_group</span> <span class="o">=</span> <span class="n">linechart_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">data_group</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Convert SVG image to PNG</span>
+                <span class="k">if</span> <span class="n">linechart_path_for_data_group</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.svg&quot;</span><span class="p">):</span>
+                    <span class="c1"># linechart_path_for_data_group = os.path.join(os.path.dirname(__file__), linechart_path_for_data_group)</span>
+                    <span class="n">linechart_path_for_data_group</span> <span class="o">=</span> <span class="n">convert_svg_to_png</span><span class="p">(</span><span class="n">linechart_path_for_data_group</span><span class="p">)</span>
+
+                <span class="c1"># Create an Image object with width 450, preserving aspect ratio</span>
+                <span class="n">line_chart</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">linechart_path_for_data_group</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+                <span class="n">line_chart</span><span class="o">.</span><span class="n">drawHeight</span> <span class="o">=</span> <span class="n">line_chart</span><span class="o">.</span><span class="n">drawWidth</span> <span class="o">*</span> <span class="n">line_chart</span><span class="o">.</span><span class="n">imageHeight</span> <span class="o">/</span> <span class="n">line_chart</span><span class="o">.</span><span class="n">imageWidth</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_chart</span><span class="p">)</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Error: Could not load Line Chart image.&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+
+        <span class="c1"># Add a page break between chart subsections</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+
+        <span class="c1"># Heatmap Subsection</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Heatmaps&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading3&quot;</span><span class="p">]))</span>
+
+        <span class="k">for</span> <span class="n">data_group</span> <span class="ow">in</span> <span class="n">data_groups</span><span class="p">:</span>
+            <span class="n">heatmap_path_for_data_group</span> <span class="o">=</span> <span class="n">heatmap_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">data_group</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Convert SVG image to PNG</span>
+                <span class="k">if</span> <span class="n">heatmap_path_for_data_group</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.svg&quot;</span><span class="p">):</span>
+                    <span class="c1"># heatmap_path_for_data_group = os.path.join(os.path.dirname(__file__), heatmap_path_for_data_group)</span>
+                    <span class="n">heatmap_path_for_data_group</span> <span class="o">=</span> <span class="n">convert_svg_to_png</span><span class="p">(</span><span class="n">heatmap_path_for_data_group</span><span class="p">)</span>
+                <span class="c1"># Create an Image object with width 450, preserving aspect ratio</span>
+                <span class="n">heatmap</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">heatmap_path_for_data_group</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+                <span class="n">heatmap</span><span class="o">.</span><span class="n">drawHeight</span> <span class="o">=</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">drawWidth</span> <span class="o">*</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">imageHeight</span> <span class="o">/</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">imageWidth</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Error: Could not load Heatmap image.&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+
+        <span class="c1"># Add a page break between chart subsections</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+
+        <span class="c1"># Dendrogram Subsection</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Dendrograms&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Heading3&quot;</span><span class="p">]))</span>
+
+        <span class="k">for</span> <span class="n">data_group</span> <span class="ow">in</span> <span class="n">data_groups</span><span class="p">:</span>
+            <span class="n">dendrogram_path_for_data_group</span> <span class="o">=</span> <span class="n">dendrogram_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;???&#39;</span><span class="p">,</span> <span class="n">data_group</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Convert SVG image to PNG</span>
+                <span class="k">if</span> <span class="n">dendrogram_path_for_data_group</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.svg&quot;</span><span class="p">):</span>
+                    <span class="c1"># dendrogram_path_for_data_group = os.path.join(os.path.dirname(__file__), dendrogram_path_for_data_group)</span>
+                    <span class="n">dendrogram_path_for_data_group</span> <span class="o">=</span> <span class="n">convert_svg_to_png</span><span class="p">(</span><span class="n">dendrogram_path_for_data_group</span><span class="p">)</span>
+                <span class="c1"># Create an Image object with width 450, preserving aspect ratio</span>
+                <span class="n">dendrogram</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">dendrogram_path_for_data_group</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+                <span class="n">dendrogram</span><span class="o">.</span><span class="n">drawHeight</span> <span class="o">=</span> <span class="n">dendrogram</span><span class="o">.</span><span class="n">drawWidth</span> <span class="o">*</span> <span class="n">dendrogram</span><span class="o">.</span><span class="n">imageHeight</span> <span class="o">/</span> <span class="n">dendrogram</span><span class="o">.</span><span class="n">imageWidth</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dendrogram</span><span class="p">)</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Paragraph</span><span class="p">(</span><span class="s2">&quot;Error: Could not load Dendrogram image.&quot;</span><span class="p">,</span> <span class="n">styles</span><span class="p">[</span><span class="s2">&quot;Normal&quot;</span><span class="p">]))</span>
+
+
+    <span class="c1"># Build the PDF</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ignacio Marco-Pérez, Jónathan Heras-Vicente.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

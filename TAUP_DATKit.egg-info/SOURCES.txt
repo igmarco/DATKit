@@ -5,6 +5,7 @@ setup.cfg
 setup.py
 DATKit/__init__.py
 DATKit/analysis_reporting.py
+DATKit/data_export.py
 DATKit/data_filtering.py
 DATKit/data_integration.py
 DATKit/data_loading.py
