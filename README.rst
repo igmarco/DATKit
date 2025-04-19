@@ -54,6 +54,7 @@ DATKit requires the following libraries to work properly. Please ensure that you
 - **CairoSVG**: approximately version 2.7.1 (`~=2.7.1`)
 - **matplotlib**: approximately version 3.10.0 (`~=3.10.0`)
 - **numpy**: version between 1.26.0 (inclusive) and 2.0.0 (exclusive) (`>=1.26.0, <2.0.0`)
+- **openpyxl**: version between 3.0.10 (inclusive) and 3.1.5 (inclusive) (`>=3.0.10, <=3.1.5`)
 - **pandas**: version between 2.2.2 (inclusive) and 2.3.0 (exclusive) (`>=2.2.2, <2.3.0`)
 - **reportlab**: approximately version 4.2.5 (`~=4.2.5`)
 - **scikit_learn**: approximately version 1.6.0 (`~=1.6.0`)
@@ -66,6 +67,7 @@ DATKit requires the following libraries to work properly. Please ensure that you
     CairoSVG~=2.7.1
     matplotlib~=3.10.0
     numpy>=1.26.0,<2.0.0
+    openpyxl>=3.0.10,<=3.1.5
     pandas>=2.2.2,<2.3.0
     reportlab~=4.2.5
     scikit_learn~=1.6.0
