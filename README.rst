@@ -61,17 +61,17 @@ DATKit requires the following libraries to work properly. Please ensure that you
 - **seaborn**: approximately version 0.13.2 (`~=0.13.2`)
 - **setuptools**: version 60.0.0 or higher (`>=60.0.0`)
 
-```
-CairoSVG~=2.7.1
-matplotlib~=3.10.0
-numpy>=1.26.0,<2.0.0
-pandas>=2.2.2,<2.3.0
-reportlab~=4.2.5
-scikit_learn~=1.6.0
-scipy>=1.7.0,<1.14.0
-seaborn~=0.13.2
-setuptools>=60.0.0
-```
+::
+
+    CairoSVG~=2.7.1
+    matplotlib~=3.10.0
+    numpy>=1.26.0,<2.0.0
+    pandas>=2.2.2,<2.3.0
+    reportlab~=4.2.5
+    scikit_learn~=1.6.0
+    scipy>=1.7.0,<1.14.0
+    seaborn~=0.13.2
+    setuptools>=60.0.0
 
 Some features of the DATKit library, such as converting SVG images to PNG, require system-level dependencies that are not installed via ``pip``.
 
