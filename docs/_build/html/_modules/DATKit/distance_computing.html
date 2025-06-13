@@ -1,22 +1,20 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit.distance_computing &mdash; TAUP-DATKit 0.4.1 documentation</title>
+  <title>DATKit.distance_computing &mdash; TAUP-DATKit 0.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../_static/documentation_options.js?v=c87aa342"></script>
-        <script src="../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=1dd76d02"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -43,7 +41,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">DATKit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">DATKit-1</a></li>
 </ul>
 
         </div>
@@ -73,9 +71,9 @@
              
   <h1>Source code for DATKit.distance_computing</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">correlation</span><span class="p">,</span> <span class="n">cosine</span><span class="p">,</span> <span class="n">jaccard</span><span class="p">,</span> <span class="n">euclidean</span><span class="p">,</span> <span class="n">minkowski</span><span class="p">,</span> <span class="n">hamming</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">pearsonr</span><span class="p">,</span> <span class="n">spearmanr</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">AgglomerativeClustering</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">DATKit.utils.metric_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">datkit_pearsonr</span><span class="p">,</span> <span class="n">datkit_spearmanr</span><span class="p">,</span> <span class="n">datkit_sliding_window_similarity_mean</span><span class="p">,</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">,</span> <span class="n">datkit_wasserstein</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">DATKit.data_integration</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_spectra</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -93,15 +91,24 @@
 <span class="sd">    vector2 : np.ndarray</span>
 <span class="sd">        Must have the same size as vector1.</span>
 <span class="sd">    metric : str</span>
-<span class="sd">        The metric to use for computing the distance. Supported metrics are:</span>
 <span class="sd">        - &#39;correlation&#39;: Correlation distance.</span>
 <span class="sd">        - &#39;cosine&#39;: Cosine distance.</span>
 <span class="sd">        - &#39;euclidean&#39;: Euclidean distance.</span>
 <span class="sd">        - &#39;jaccard&#39;: Jaccard distance.</span>
 <span class="sd">        - &#39;hamming&#39;: Hamming distance.</span>
-<span class="sd">        - &#39;minkowski&#39;: Minkowski distance (requires p in kwargs).</span>
-<span class="sd">        - &#39;pearson&#39;: Pearson correlation (returns 1 - absolute correlation).</span>
-<span class="sd">        - &#39;spearman&#39;: Spearman correlation (returns 1 - absolute correlation).</span>
+<span class="sd">        - &#39;minkowski&#39;: Minkowski distance (requires parameter &#39;p&#39; in kwargs).</span>
+<span class="sd">        - &#39;pearson&#39;: Pearson correlation distance, defined as 1 - absolute Pearson correlation.</span>
+<span class="sd">        - &#39;spearman&#39;: Spearman correlation distance, defined as 1 - absolute Spearman correlation.</span>
+<span class="sd">        - &#39;sws cosine&#39;: Mean cosine similarity computed over sliding windows of fixed size.</span>
+<span class="sd">        - &#39;sws pearson&#39;: Mean Pearson correlation similarity computed over sliding windows.</span>
+<span class="sd">        - &#39;sws spearman&#39;: Mean Spearman correlation similarity computed over sliding windows.</span>
+<span class="sd">        - &#39;sws cosine derivative mean&#39;: Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.</span>
+<span class="sd">        - &#39;sws pearson derivative mean&#39;: Weighted mean Pearson similarity with derivative weights.</span>
+<span class="sd">        - &#39;sws spearman derivative mean&#39;: Weighted mean Spearman similarity with derivative weights.</span>
+<span class="sd">        - &#39;sws cosine derivative geometric&#39;: Weighted mean cosine similarity with geometric mean weighting of derivatives.</span>
+<span class="sd">        - &#39;sws pearson derivative geometric&#39;: Weighted mean Pearson similarity with geometric mean weighting.</span>
+<span class="sd">        - &#39;sws spearman derivative geometric&#39;: Weighted mean Spearman similarity with geometric mean weighting.</span>
+<span class="sd">        - &#39;wasserstein&#39;: Wasserstein (Earth Mover&#39;s) distance between peaks detected in both signals.</span>
 <span class="sd">    **kwargs : dict</span>
 <span class="sd">        Additional arguments for specific metrics (e.g., `p` for Minkowski distance).</span>
 
@@ -127,8 +134,18 @@
         <span class="s1">&#39;jaccard&#39;</span><span class="p">:</span> <span class="n">jaccard</span><span class="p">,</span>
         <span class="s1">&#39;hamming&#39;</span><span class="p">:</span> <span class="n">hamming</span><span class="p">,</span>
         <span class="s1">&#39;minkowski&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">minkowski</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>  <span class="c1"># Default p=2</span>
-        <span class="s1">&#39;pearson&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span>
-        <span class="s1">&#39;spearman&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="s1">&#39;pearson&#39;</span><span class="p">:</span> <span class="n">datkit_pearsonr</span><span class="p">,</span>
+        <span class="s1">&#39;spearman&#39;</span><span class="p">:</span> <span class="n">datkit_spearmanr</span><span class="p">,</span>
+        <span class="s1">&#39;sws cosine&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_mean</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cosine</span><span class="p">),</span>
+        <span class="s1">&#39;sws pearson&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_mean</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">datkit_pearsonr</span><span class="p">),</span>
+        <span class="s1">&#39;sws spearman&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_mean</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">datkit_spearmanr</span><span class="p">),</span>
+        <span class="s1">&#39;sws cosine derivative mean&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cosine</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;sws pearson derivative mean&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">datkit_pearsonr</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;sws spearman derivative mean&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">datkit_spearmanr</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;sws cosine derivative geometric&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cosine</span><span class="p">,</span> <span class="s1">&#39;geometric&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;sws pearson derivative geometric&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">datkit_pearsonr</span><span class="p">,</span> <span class="s1">&#39;geometric&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;sws spearman derivative geometric&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="n">datkit_sliding_window_similarity_derivative_weighted_distance</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">datkit_spearmanr</span><span class="p">,</span> <span class="s1">&#39;geometric&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;wasserstein&#39;</span><span class="p">:</span> <span class="n">datkit_wasserstein</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="c1"># Check if the metric is valid</span>
@@ -152,15 +169,24 @@
 <span class="sd">        A DataFrame where each column (except the first) corresponds to a sample,</span>
 <span class="sd">        and rows contain the measured spectra values.</span>
 <span class="sd">    metric : str</span>
-<span class="sd">        The distance metric to use when computing the distance matrix. Supported metrics are:</span>
 <span class="sd">        - &#39;correlation&#39;: Correlation distance.</span>
 <span class="sd">        - &#39;cosine&#39;: Cosine distance.</span>
 <span class="sd">        - &#39;euclidean&#39;: Euclidean distance.</span>
 <span class="sd">        - &#39;jaccard&#39;: Jaccard distance.</span>
 <span class="sd">        - &#39;hamming&#39;: Hamming distance.</span>
-<span class="sd">        - &#39;minkowski&#39;: Minkowski distance (requires p in kwargs).</span>
-<span class="sd">        - &#39;pearson&#39;: Pearson correlation (returns 1 - absolute correlation).</span>
-<span class="sd">        - &#39;spearman&#39;: Spearman correlation (returns 1 - absolute correlation).</span>
+<span class="sd">        - &#39;minkowski&#39;: Minkowski distance (requires parameter &#39;p&#39; in kwargs).</span>
+<span class="sd">        - &#39;pearson&#39;: Pearson correlation distance, defined as 1 - absolute Pearson correlation.</span>
+<span class="sd">        - &#39;spearman&#39;: Spearman correlation distance, defined as 1 - absolute Spearman correlation.</span>
+<span class="sd">        - &#39;sws cosine&#39;: Mean cosine similarity computed over sliding windows of fixed size.</span>
+<span class="sd">        - &#39;sws pearson&#39;: Mean Pearson correlation similarity computed over sliding windows.</span>
+<span class="sd">        - &#39;sws spearman&#39;: Mean Spearman correlation similarity computed over sliding windows.</span>
+<span class="sd">        - &#39;sws cosine derivative mean&#39;: Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.</span>
+<span class="sd">        - &#39;sws pearson derivative mean&#39;: Weighted mean Pearson similarity with derivative weights.</span>
+<span class="sd">        - &#39;sws spearman derivative mean&#39;: Weighted mean Spearman similarity with derivative weights.</span>
+<span class="sd">        - &#39;sws cosine derivative geometric&#39;: Weighted mean cosine similarity with geometric mean weighting of derivatives.</span>
+<span class="sd">        - &#39;sws pearson derivative geometric&#39;: Weighted mean Pearson similarity with geometric mean weighting.</span>
+<span class="sd">        - &#39;sws spearman derivative geometric&#39;: Weighted mean Spearman similarity with geometric mean weighting.</span>
+<span class="sd">        - &#39;wasserstein&#39;: Wasserstein (Earth Mover&#39;s) distance between peaks detected in both signals.</span>
 <span class="sd">    **kwargs : dict</span>
 <span class="sd">        Additional arguments passed to `compute_distance` (e.g., `p` for Minkowski distance).</span>
 

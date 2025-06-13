@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Adding the parent file to the path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from DATKit.properties.process_prop_loader import config_process
 from DATKit.properties.prop_parser import parse_value
 from DATKit.analysis_reporting import generate_pdf_report

@@ -20,6 +20,14 @@ DATKit.utils.interpolation\_utils module
    :undoc-members:
    :show-inheritance:
 
+DATKit.utils.metric\_utils module
+---------------------------------
+
+.. automodule:: DATKit.utils.metric_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

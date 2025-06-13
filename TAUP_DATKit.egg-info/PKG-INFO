@@ -1,6 +1,6 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: TAUP-DATKit
-Version: 0.4.3
+Version: 0.5.0
 Summary: A package for chromatographic data analysis
 Home-page: https://github.com/igmarco/DATKit
 Author: Ignacio Marco-Pérez, Jónathan Heras-Vicente
@@ -12,13 +12,14 @@ License-File: LICENSE.txt
 Requires-Dist: CairoSVG~=2.7.1
 Requires-Dist: matplotlib~=3.10.0
 Requires-Dist: numpy<2.0.0,>=1.26.0
-Requires-Dist: openpyxl<3.1.5,>=3.0.10
+Requires-Dist: openpyxl<=3.1.5,>=3.0.10
 Requires-Dist: pandas<2.3.0,>=2.2.2
 Requires-Dist: reportlab~=4.2.5
 Requires-Dist: scikit_learn~=1.6.0
 Requires-Dist: scipy<1.14.0,>=1.7.0
 Requires-Dist: seaborn~=0.13.2
 Requires-Dist: setuptools>=60.0.0
+Dynamic: license-file
 
 TAUP_DATKit
 ============
@@ -31,6 +32,10 @@ TAUP_DATKit (*TAU Protein - Data Analysis Tool Kit*) is a package designed for d
 - Merging data and homogenizing spectra using data interpolation techniques.
 - Complex filtering of elements.
 - Representation and visualization of distances and similarities between elements.
+
+Current Version
+---------------
+TAUP_DATKit 0.5.0
 
 Project Context
 ---------------
@@ -67,7 +72,8 @@ The library structure of TAUP_DATKit is organized as follows:
         -  "chart_tools.py": Functions for generating plots.
     - "utils/": Functions to manage other resources.
         -  "image_utils.py": Functions for managing images.
-        - "interpolation_utils.py": Functions for defining interpolation algorithms.
+        -  "interpolation_utils.py": Functions for defining interpolation algorithms.
+        -  "metrics_utils.py": Function for the calculation of different metrics.
 
 Requirements
 ------------
@@ -76,6 +82,7 @@ DATKit requires the following libraries to work properly. Please ensure that you
 - **CairoSVG**: approximately version 2.7.1 (`~=2.7.1`)
 - **matplotlib**: approximately version 3.10.0 (`~=3.10.0`)
 - **numpy**: version between 1.26.0 (inclusive) and 2.0.0 (exclusive) (`>=1.26.0, <2.0.0`)
+- **openpyxl**: version between 3.0.10 (inclusive) and 3.1.5 (inclusive) (`>=3.0.10, <=3.1.5`)
 - **pandas**: version between 2.2.2 (inclusive) and 2.3.0 (exclusive) (`>=2.2.2, <2.3.0`)
 - **reportlab**: approximately version 4.2.5 (`~=4.2.5`)
 - **scikit_learn**: approximately version 1.6.0 (`~=1.6.0`)
@@ -83,17 +90,18 @@ DATKit requires the following libraries to work properly. Please ensure that you
 - **seaborn**: approximately version 0.13.2 (`~=0.13.2`)
 - **setuptools**: version 60.0.0 or higher (`>=60.0.0`)
 
-```
-CairoSVG~=2.7.1
-matplotlib~=3.10.0
-numpy>=1.26.0,<2.0.0
-pandas>=2.2.2,<2.3.0
-reportlab~=4.2.5
-scikit_learn~=1.6.0
-scipy>=1.7.0,<1.14.0
-seaborn~=0.13.2
-setuptools>=60.0.0
-```
+::
+
+    CairoSVG~=2.7.1
+    matplotlib~=3.10.0
+    numpy>=1.26.0,<2.0.0
+    openpyxl>=3.0.10,<=3.1.5
+    pandas>=2.2.2,<2.3.0
+    reportlab~=4.2.5
+    scikit_learn~=1.6.0
+    scipy>=1.7.0,<1.14.0
+    seaborn~=0.13.2
+    setuptools>=60.0.0
 
 Some features of the DATKit library, such as converting SVG images to PNG, require system-level dependencies that are not installed via ``pip``.
 

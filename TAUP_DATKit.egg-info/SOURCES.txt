@@ -21,6 +21,7 @@ DATKit/tools/chart_tools.py
 DATKit/utils/__init__.py
 DATKit/utils/image_utils.py
 DATKit/utils/interpolation_utils.py
+DATKit/utils/metric_utils.py
 TAUP_DATKit.egg-info/PKG-INFO
 TAUP_DATKit.egg-info/SOURCES.txt
 TAUP_DATKit.egg-info/dependency_links.txt

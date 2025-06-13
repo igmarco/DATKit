@@ -1,7 +1,7 @@
 from scipy.interpolate import interp1d, CubicSpline
 
-from scipy.spatial.distance import correlation, cosine, jaccard, euclidean, minkowski, hamming
-from scipy.stats import pearsonr, spearmanr
+# from scipy.spatial.distance import correlation, cosine, jaccard, euclidean, minkowski, hamming
+# from scipy.stats import pearsonr, spearmanr
 
 import numpy as np
 import pandas as pd

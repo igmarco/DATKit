@@ -10,6 +10,10 @@ TAUP_DATKit (*TAU Protein - Data Analysis Tool Kit*) is a package designed for d
 - Complex filtering of elements.
 - Representation and visualization of distances and similarities between elements.
 
+Current Version
+---------------
+TAUP_DATKit 0.5.0
+
 Project Context
 ---------------
 This package is part of the *TAU Protein*: "Systematic manipulation of tau protein aggregation: bridging biochemical and pathological properties".
@@ -45,7 +49,8 @@ The library structure of TAUP_DATKit is organized as follows:
         -  "chart_tools.py": Functions for generating plots.
     - "utils/": Functions to manage other resources.
         -  "image_utils.py": Functions for managing images.
-        - "interpolation_utils.py": Functions for defining interpolation algorithms.
+        -  "interpolation_utils.py": Functions for defining interpolation algorithms.
+        -  "metrics_utils.py": Function for the calculation of different metrics.
 
 Requirements
 ------------

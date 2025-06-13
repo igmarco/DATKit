@@ -22,7 +22,7 @@ copyright = '2025, Ignacio Marco-Pérez, Jónathan Heras-Vicente'
 author = 'Ignacio Marco-Pérez, Jónathan Heras-Vicente'
 
 # The full version, including alpha/beta/rc tags
-release = '0.4.3'
+release = '0.5.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -56,3 +56,14 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+autodoc_mock_imports = [
+    "reportlab", 
+    "pandas", 
+    "scipy", 
+    "matplotlib", 
+    "cairosvg", 
+    "numpy",
+    "sklearn",
+    "seaborn",
+]

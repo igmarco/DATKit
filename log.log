@@ -162,3 +162,56 @@ Traceback (most recent call last):
     raise AttributeError(
 AttributeError: Line2D.set() got an unexpected keyword argument 'name'
 2025-04-18 16:53:33,154 - ERROR - Prueba de log: el logger está configurado correctamente.
+2025-06-13 10:07:11,239 - ERROR - (IGNORE THIS ERROR) Log test: the logger is configured correctly.
+2025-06-13 10:09:34,444 - ERROR - (IGNORE THIS ERROR) Log test: the logger is configured correctly.
+2025-06-13 10:09:39,723 - ERROR - Unhandled exception
+Traceback (most recent call last):
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\demo\example_process.py", line 76, in <module>
+    filtered_df, filtered_names = filter_columns_by_distance(filtered_df,
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\data_filtering.py", line 140, in filter_columns_by_distance
+    distance_matrix, names = generate_distance_matrix(df, metric=metric, **kwargs)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\distance_computing.py", line 139, in generate_distance_matrix
+    distance = compute_distance(spectra[i], spectra[j], metric=metric, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\distance_computing.py", line 82, in compute_distance
+    return metric_functions[metric](vector1, vector2)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\distance_computing.py", line 65, in <lambda>
+    'sws cosine': lambda v1, v2: datkit_sliding_window_similarity_mean(v1, v2, 30, 1, cosine),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\utils\metric_utils.py", line 100, in datkit_sliding_window_similarity_mean
+    return np.mean(sliding_window_similarity(v1, v2, window_size, step_size, metric, t)[1])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\utils\metric_utils.py", line 72, in sliding_window_similarity
+    corr, _ = metric(segment1, segment2)
+    ^^^^^^^
+TypeError: cannot unpack non-iterable numpy.float64 object
+2025-06-13 10:32:36,461 - ERROR - (IGNORE THIS ERROR) Log test: the logger is configured correctly.
+2025-06-13 10:32:53,023 - ERROR - Unhandled exception
+Traceback (most recent call last):
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\demo\example_process.py", line 76, in <module>
+    filtered_df, filtered_names = filter_columns_by_distance(filtered_df,
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\data_filtering.py", line 140, in filter_columns_by_distance
+    distance_matrix, names = generate_distance_matrix(df, metric=metric, **kwargs)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\distance_computing.py", line 139, in generate_distance_matrix
+    distance = compute_distance(spectra[i], spectra[j], metric=metric, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\distance_computing.py", line 82, in compute_distance
+    return metric_functions[metric](vector1, vector2)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\distance_computing.py", line 65, in <lambda>
+    'sws cosine': lambda v1, v2: datkit_sliding_window_similarity_mean(v1, v2, 30, 1, cosine),
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\utils\metric_utils.py", line 100, in datkit_sliding_window_similarity_mean
+    return np.mean(sliding_window_similarity(v1, v2, window_size, step_size, metric, t)[1])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\igmarco\OneDrive - Universidad de La Rioja\BCP\Escritorio\VSC\DATKit\DATKit-1\DATKit\utils\metric_utils.py", line 72, in sliding_window_similarity
+    corr, _ = metric(segment1, segment2)
+    ^^^^^^^
+TypeError: cannot unpack non-iterable numpy.float64 object
+2025-06-13 10:33:52,242 - ERROR - (IGNORE THIS ERROR) Log test: the logger is configured correctly.
+2025-06-13 10:34:59,724 - ERROR - (IGNORE THIS ERROR) Log test: the logger is configured correctly.

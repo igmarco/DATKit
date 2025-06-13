@@ -1,28 +1,26 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit package &mdash; TAUP-DATKit 0.4.2 documentation</title>
+  <title>DATKit package &mdash; TAUP-DATKit 0.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=ff822928"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=1dd76d02"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="DATKit.properties package" href="DATKit.properties.html" />
-    <link rel="prev" title="DATKit" href="modules.html" /> 
+    <link rel="prev" title="DATKit-1" href="modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DATKit</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DATKit-1</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DATKit package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="DATKit.properties.html">DATKit.properties package</a></li>
@@ -104,6 +102,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">demo package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -122,7 +122,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">DATKit</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">DATKit-1</a></li>
       <li class="breadcrumb-item active">DATKit package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/DATKit.rst.txt" rel="nofollow"> View page source</a>
@@ -170,6 +170,16 @@
 <li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#module-DATKit.utils.interpolation_utils">DATKit.utils.interpolation_utils module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.interpolation_utils.nearest"><code class="docutils literal notranslate"><span class="pre">nearest()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.interpolation_utils.zeros"><code class="docutils literal notranslate"><span class="pre">zeros()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#module-DATKit.utils.metric_utils">DATKit.utils.metric_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.datkit_pearsonr"><code class="docutils literal notranslate"><span class="pre">datkit_pearsonr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.datkit_sliding_window_similarity_derivative_weighted_distance"><code class="docutils literal notranslate"><span class="pre">datkit_sliding_window_similarity_derivative_weighted_distance()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.datkit_sliding_window_similarity_mean"><code class="docutils literal notranslate"><span class="pre">datkit_sliding_window_similarity_mean()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.datkit_spearmanr"><code class="docutils literal notranslate"><span class="pre">datkit_spearmanr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.datkit_wasserstein"><code class="docutils literal notranslate"><span class="pre">datkit_wasserstein()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.sliding_window_similarity"><code class="docutils literal notranslate"><span class="pre">sliding_window_similarity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DATKit.utils.html#DATKit.utils.metric_utils.weighted_similarity_from_two_derivatives"><code class="docutils literal notranslate"><span class="pre">weighted_similarity_from_two_derivatives()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="DATKit.utils.html#module-DATKit.utils">Module contents</a></li>
@@ -436,7 +446,25 @@ Only columns with distance &lt;= threshold from the reference element will be ke
 <li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each column (except the first) corresponds to a sample.</p></li>
 <li><p><strong>element_name</strong> (<em>str</em>) – The name of the reference element (column) to compare against.</p></li>
 <li><p><strong>threshold</strong> (<em>float</em>) – The distance threshold. Only columns with distance &lt;= threshold to the given element will be returned.</p></li>
-<li><p><strong>metric</strong> (<em>str</em>) – The distance metric to use when computing the distance matrix.</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – The metric to use for computing the distance. Supported metrics are:
+- ‘correlation’: Correlation distance.
+- ‘cosine’: Cosine distance.
+- ‘euclidean’: Euclidean distance.
+- ‘jaccard’: Jaccard distance.
+- ‘hamming’: Hamming distance.
+- ‘minkowski’: Minkowski distance (requires parameter ‘p’ in kwargs).
+- ‘pearson’: Pearson correlation distance, defined as 1 - absolute Pearson correlation.
+- ‘spearman’: Spearman correlation distance, defined as 1 - absolute Spearman correlation.
+- ‘sws cosine’: Mean cosine similarity computed over sliding windows of fixed size.
+- ‘sws pearson’: Mean Pearson correlation similarity computed over sliding windows.
+- ‘sws spearman’: Mean Spearman correlation similarity computed over sliding windows.
+- ‘sws cosine derivative mean’: Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.
+- ‘sws pearson derivative mean’: Weighted mean Pearson similarity with derivative weights.
+- ‘sws spearman derivative mean’: Weighted mean Spearman similarity with derivative weights.
+- ‘sws cosine derivative geometric’: Weighted mean cosine similarity with geometric mean weighting of derivatives.
+- ‘sws pearson derivative geometric’: Weighted mean Pearson similarity with geometric mean weighting.
+- ‘sws spearman derivative geometric’: Weighted mean Spearman similarity with geometric mean weighting.
+- ‘wasserstein’: Wasserstein (Earth Mover’s) distance between peaks detected in both signals.</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to <cite>generate_distance_matrix</cite>.</p></li>
 </ul>
 </dd>
@@ -744,15 +772,27 @@ distance &lt;= threshold.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vector1</strong> (<em>np.ndarray</em>)</p></li>
 <li><p><strong>vector2</strong> (<em>np.ndarray</em>) – Must have the same size as vector1.</p></li>
-<li><p><strong>metric</strong> (<em>str</em>) – The metric to use for computing the distance. Supported metrics are:
-- ‘correlation’: Correlation distance.
-- ‘cosine’: Cosine distance.
-- ‘euclidean’: Euclidean distance.
-- ‘jaccard’: Jaccard distance.
-- ‘hamming’: Hamming distance.
-- ‘minkowski’: Minkowski distance (requires p in kwargs).
-- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
-- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – <ul>
+<li><p>‘correlation’: Correlation distance.</p></li>
+<li><p>’cosine’: Cosine distance.</p></li>
+<li><p>’euclidean’: Euclidean distance.</p></li>
+<li><p>’jaccard’: Jaccard distance.</p></li>
+<li><p>’hamming’: Hamming distance.</p></li>
+<li><p>’minkowski’: Minkowski distance (requires parameter ‘p’ in kwargs).</p></li>
+<li><p>’pearson’: Pearson correlation distance, defined as 1 - absolute Pearson correlation.</p></li>
+<li><p>’spearman’: Spearman correlation distance, defined as 1 - absolute Spearman correlation.</p></li>
+<li><p>’sws cosine’: Mean cosine similarity computed over sliding windows of fixed size.</p></li>
+<li><p>’sws pearson’: Mean Pearson correlation similarity computed over sliding windows.</p></li>
+<li><p>’sws spearman’: Mean Spearman correlation similarity computed over sliding windows.</p></li>
+<li><p>’sws cosine derivative mean’: Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.</p></li>
+<li><p>’sws pearson derivative mean’: Weighted mean Pearson similarity with derivative weights.</p></li>
+<li><p>’sws spearman derivative mean’: Weighted mean Spearman similarity with derivative weights.</p></li>
+<li><p>’sws cosine derivative geometric’: Weighted mean cosine similarity with geometric mean weighting of derivatives.</p></li>
+<li><p>’sws pearson derivative geometric’: Weighted mean Pearson similarity with geometric mean weighting.</p></li>
+<li><p>’sws spearman derivative geometric’: Weighted mean Spearman similarity with geometric mean weighting.</p></li>
+<li><p>’wasserstein’: Wasserstein (Earth Mover’s) distance between peaks detected in both signals.</p></li>
+</ul>
+</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments for specific metrics (e.g., <cite>p</cite> for Minkowski distance).</p></li>
 </ul>
 </dd>
@@ -777,15 +817,27 @@ distance &lt;= threshold.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – A DataFrame where each column (except the first) corresponds to a sample,
 and rows contain the measured spectra values.</p></li>
-<li><p><strong>metric</strong> (<em>str</em>) – The distance metric to use when computing the distance matrix. Supported metrics are:
-- ‘correlation’: Correlation distance.
-- ‘cosine’: Cosine distance.
-- ‘euclidean’: Euclidean distance.
-- ‘jaccard’: Jaccard distance.
-- ‘hamming’: Hamming distance.
-- ‘minkowski’: Minkowski distance (requires p in kwargs).
-- ‘pearson’: Pearson correlation (returns 1 - absolute correlation).
-- ‘spearman’: Spearman correlation (returns 1 - absolute correlation).</p></li>
+<li><p><strong>metric</strong> (<em>str</em>) – <ul>
+<li><p>‘correlation’: Correlation distance.</p></li>
+<li><p>’cosine’: Cosine distance.</p></li>
+<li><p>’euclidean’: Euclidean distance.</p></li>
+<li><p>’jaccard’: Jaccard distance.</p></li>
+<li><p>’hamming’: Hamming distance.</p></li>
+<li><p>’minkowski’: Minkowski distance (requires parameter ‘p’ in kwargs).</p></li>
+<li><p>’pearson’: Pearson correlation distance, defined as 1 - absolute Pearson correlation.</p></li>
+<li><p>’spearman’: Spearman correlation distance, defined as 1 - absolute Spearman correlation.</p></li>
+<li><p>’sws cosine’: Mean cosine similarity computed over sliding windows of fixed size.</p></li>
+<li><p>’sws pearson’: Mean Pearson correlation similarity computed over sliding windows.</p></li>
+<li><p>’sws spearman’: Mean Spearman correlation similarity computed over sliding windows.</p></li>
+<li><p>’sws cosine derivative mean’: Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.</p></li>
+<li><p>’sws pearson derivative mean’: Weighted mean Pearson similarity with derivative weights.</p></li>
+<li><p>’sws spearman derivative mean’: Weighted mean Spearman similarity with derivative weights.</p></li>
+<li><p>’sws cosine derivative geometric’: Weighted mean cosine similarity with geometric mean weighting of derivatives.</p></li>
+<li><p>’sws pearson derivative geometric’: Weighted mean Pearson similarity with geometric mean weighting.</p></li>
+<li><p>’sws spearman derivative geometric’: Weighted mean Spearman similarity with geometric mean weighting.</p></li>
+<li><p>’wasserstein’: Wasserstein (Earth Mover’s) distance between peaks detected in both signals.</p></li>
+</ul>
+</p></li>
 <li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to <cite>compute_distance</cite> (e.g., <cite>p</cite> for Minkowski distance).</p></li>
 </ul>
 </dd>
@@ -838,7 +890,7 @@ and rows contain the measured spectra values.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="DATKit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-left" title="DATKit-1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="DATKit.properties.html" class="btn btn-neutral float-right" title="DATKit.properties package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

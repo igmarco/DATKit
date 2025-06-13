@@ -109,7 +109,25 @@ def filter_columns_by_distance(df, element_name, threshold=0.1, metric='correlat
     threshold : float
         The distance threshold. Only columns with distance <= threshold to the given element will be returned.
     metric : str
-        The distance metric to use when computing the distance matrix.
+        The metric to use for computing the distance. Supported metrics are:
+        - 'correlation': Correlation distance.
+        - 'cosine': Cosine distance.
+        - 'euclidean': Euclidean distance.
+        - 'jaccard': Jaccard distance.
+        - 'hamming': Hamming distance.
+        - 'minkowski': Minkowski distance (requires parameter 'p' in kwargs).
+        - 'pearson': Pearson correlation distance, defined as 1 - absolute Pearson correlation.
+        - 'spearman': Spearman correlation distance, defined as 1 - absolute Spearman correlation.
+        - 'sws cosine': Mean cosine similarity computed over sliding windows of fixed size.
+        - 'sws pearson': Mean Pearson correlation similarity computed over sliding windows.
+        - 'sws spearman': Mean Spearman correlation similarity computed over sliding windows.
+        - 'sws cosine derivative mean': Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.
+        - 'sws pearson derivative mean': Weighted mean Pearson similarity with derivative weights.
+        - 'sws spearman derivative mean': Weighted mean Spearman similarity with derivative weights.
+        - 'sws cosine derivative geometric': Weighted mean cosine similarity with geometric mean weighting of derivatives.
+        - 'sws pearson derivative geometric': Weighted mean Pearson similarity with geometric mean weighting.
+        - 'sws spearman derivative geometric': Weighted mean Spearman similarity with geometric mean weighting.
+        - 'wasserstein': Wasserstein (Earth Mover's) distance between peaks detected in both signals.
     **kwargs : dict
         Additional arguments passed to `generate_distance_matrix`.
 

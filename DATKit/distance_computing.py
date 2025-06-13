@@ -1,7 +1,7 @@
 from scipy.spatial.distance import correlation, cosine, jaccard, euclidean, minkowski, hamming
-from scipy.stats import pearsonr, spearmanr
 from sklearn.cluster import AgglomerativeClustering
 
+from DATKit.utils.metric_utils import datkit_pearsonr, datkit_spearmanr, datkit_sliding_window_similarity_mean, datkit_sliding_window_similarity_derivative_weighted_distance, datkit_wasserstein
 from DATKit.data_integration import generate_spectra
 
 import numpy as np
@@ -17,15 +17,24 @@ def compute_distance(vector1, vector2, metric='correlation', **kwargs):
     vector2 : np.ndarray
         Must have the same size as vector1.
     metric : str
-        The metric to use for computing the distance. Supported metrics are:
         - 'correlation': Correlation distance.
         - 'cosine': Cosine distance.
         - 'euclidean': Euclidean distance.
         - 'jaccard': Jaccard distance.
         - 'hamming': Hamming distance.
-        - 'minkowski': Minkowski distance (requires p in kwargs).
-        - 'pearson': Pearson correlation (returns 1 - absolute correlation).
-        - 'spearman': Spearman correlation (returns 1 - absolute correlation).
+        - 'minkowski': Minkowski distance (requires parameter 'p' in kwargs).
+        - 'pearson': Pearson correlation distance, defined as 1 - absolute Pearson correlation.
+        - 'spearman': Spearman correlation distance, defined as 1 - absolute Spearman correlation.
+        - 'sws cosine': Mean cosine similarity computed over sliding windows of fixed size.
+        - 'sws pearson': Mean Pearson correlation similarity computed over sliding windows.
+        - 'sws spearman': Mean Spearman correlation similarity computed over sliding windows.
+        - 'sws cosine derivative mean': Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.
+        - 'sws pearson derivative mean': Weighted mean Pearson similarity with derivative weights.
+        - 'sws spearman derivative mean': Weighted mean Spearman similarity with derivative weights.
+        - 'sws cosine derivative geometric': Weighted mean cosine similarity with geometric mean weighting of derivatives.
+        - 'sws pearson derivative geometric': Weighted mean Pearson similarity with geometric mean weighting.
+        - 'sws spearman derivative geometric': Weighted mean Spearman similarity with geometric mean weighting.
+        - 'wasserstein': Wasserstein (Earth Mover's) distance between peaks detected in both signals.
     **kwargs : dict
         Additional arguments for specific metrics (e.g., `p` for Minkowski distance).
 
@@ -51,8 +60,18 @@ def compute_distance(vector1, vector2, metric='correlation', **kwargs):
         'jaccard': jaccard,
         'hamming': hamming,
         'minkowski': lambda v1, v2: minkowski(v1, v2, kwargs.get('p', 2)),  # Default p=2
-        'pearson': lambda v1, v2: 1 - abs(pearsonr(v1, v2)[0]),
-        'spearman': lambda v1, v2: 1 - abs(spearmanr(v1, v2)[0])
+        'pearson': datkit_pearsonr,
+        'spearman': datkit_spearmanr,
+        'sws cosine': lambda v1, v2: datkit_sliding_window_similarity_mean(v1, v2, 30, 1, cosine),
+        'sws pearson': lambda v1, v2: datkit_sliding_window_similarity_mean(v1, v2, 30, 1, datkit_pearsonr),
+        'sws spearman': lambda v1, v2: datkit_sliding_window_similarity_mean(v1, v2, 30, 1, datkit_spearmanr),
+        'sws cosine derivative mean': lambda v1, v2: datkit_sliding_window_similarity_derivative_weighted_distance(v1, v2, 30, 1, cosine, 'mean'),
+        'sws pearson derivative mean': lambda v1, v2: datkit_sliding_window_similarity_derivative_weighted_distance(v1, v2, 30, 1, datkit_pearsonr, 'mean'),
+        'sws spearman derivative mean': lambda v1, v2: datkit_sliding_window_similarity_derivative_weighted_distance(v1, v2, 30, 1, datkit_spearmanr, 'mean'),
+        'sws cosine derivative geometric': lambda v1, v2: datkit_sliding_window_similarity_derivative_weighted_distance(v1, v2, 30, 1, cosine, 'geometric'),
+        'sws pearson derivative geometric': lambda v1, v2: datkit_sliding_window_similarity_derivative_weighted_distance(v1, v2, 30, 1, datkit_pearsonr, 'geometric'),
+        'sws spearman derivative geometric': lambda v1, v2: datkit_sliding_window_similarity_derivative_weighted_distance(v1, v2, 30, 1, datkit_spearmanr, 'geometric'),
+        'wasserstein': datkit_wasserstein,
     }
 
     # Check if the metric is valid
@@ -73,15 +92,24 @@ def generate_distance_matrix(df, metric='correlation', **kwargs):
         A DataFrame where each column (except the first) corresponds to a sample,
         and rows contain the measured spectra values.
     metric : str
-        The distance metric to use when computing the distance matrix. Supported metrics are:
         - 'correlation': Correlation distance.
         - 'cosine': Cosine distance.
         - 'euclidean': Euclidean distance.
         - 'jaccard': Jaccard distance.
         - 'hamming': Hamming distance.
-        - 'minkowski': Minkowski distance (requires p in kwargs).
-        - 'pearson': Pearson correlation (returns 1 - absolute correlation).
-        - 'spearman': Spearman correlation (returns 1 - absolute correlation).
+        - 'minkowski': Minkowski distance (requires parameter 'p' in kwargs).
+        - 'pearson': Pearson correlation distance, defined as 1 - absolute Pearson correlation.
+        - 'spearman': Spearman correlation distance, defined as 1 - absolute Spearman correlation.
+        - 'sws cosine': Mean cosine similarity computed over sliding windows of fixed size.
+        - 'sws pearson': Mean Pearson correlation similarity computed over sliding windows.
+        - 'sws spearman': Mean Spearman correlation similarity computed over sliding windows.
+        - 'sws cosine derivative mean': Weighted mean cosine similarity over sliding windows, where weights derive from the mean absolute derivatives of the signals.
+        - 'sws pearson derivative mean': Weighted mean Pearson similarity with derivative weights.
+        - 'sws spearman derivative mean': Weighted mean Spearman similarity with derivative weights.
+        - 'sws cosine derivative geometric': Weighted mean cosine similarity with geometric mean weighting of derivatives.
+        - 'sws pearson derivative geometric': Weighted mean Pearson similarity with geometric mean weighting.
+        - 'sws spearman derivative geometric': Weighted mean Spearman similarity with geometric mean weighting.
+        - 'wasserstein': Wasserstein (Earth Mover's) distance between peaks detected in both signals.
     **kwargs : dict
         Additional arguments passed to `compute_distance` (e.g., `p` for Minkowski distance).
 

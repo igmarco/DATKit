@@ -1,26 +1,25 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DATKit.utils package &mdash; TAUP-DATKit 0.4.2 documentation</title>
+  <title>DATKit.utils package &mdash; TAUP-DATKit 0.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=ff822928"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=1dd76d02"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="demo package" href="demo.html" />
     <link rel="prev" title="DATKit.tools package" href="DATKit.tools.html" /> 
 </head>
 
@@ -45,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DATKit</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DATKit-1</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="DATKit.html">DATKit package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="DATKit.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="DATKit.properties.html">DATKit.properties package</a></li>
@@ -64,6 +63,8 @@
 <li class="toctree-l3"><a class="reference internal" href="DATKit.html#module-DATKit">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">demo package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">DATKit</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">DATKit-1</a></li>
           <li class="breadcrumb-item"><a href="DATKit.html">DATKit package</a></li>
       <li class="breadcrumb-item active">DATKit.utils package</li>
       <li class="wy-breadcrumbs-aside">
@@ -173,6 +174,173 @@ with the same shape as <cite>x</cite>.</p>
 </dd></dl>
 
 </section>
+<section id="module-DATKit.utils.metric_utils">
+<span id="datkit-utils-metric-utils-module"></span><h2>DATKit.utils.metric_utils module<a class="headerlink" href="#module-DATKit.utils.metric_utils" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.datkit_pearsonr">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">datkit_pearsonr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#datkit_pearsonr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.datkit_pearsonr" title="Link to this definition"></a></dt>
+<dd><p>Computes a distance based on Pearson correlation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input time series.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Distance metric defined as 1 - <a href="#id1"><span class="problematic" id="id2">|Pearson correlation|</span></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.datkit_sliding_window_similarity_derivative_weighted_distance">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">datkit_sliding_window_similarity_derivative_weighted_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#datkit_sliding_window_similarity_derivative_weighted_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.datkit_sliding_window_similarity_derivative_weighted_distance" title="Link to this definition"></a></dt>
+<dd><p>Computes a weighted similarity between two signals, where the weights are
+derived from the magnitude of their first derivatives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>t</strong> (<em>array-like</em>) – Time axis.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Sliding window size.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Step size for sliding the window.</p></li>
+<li><p><strong>metric</strong> (<em>callable</em>) – Correlation function (e.g., spearmanr, pearsonr).</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Weight computation method: ‘mean’, ‘product’, ‘geometric’, ‘min’, or ‘max’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Weighted similarity score.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.datkit_sliding_window_similarity_mean">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">datkit_sliding_window_similarity_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#datkit_sliding_window_similarity_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.datkit_sliding_window_similarity_mean" title="Link to this definition"></a></dt>
+<dd><p>Computes the mean of sliding window similarities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>t</strong> (<em>array-like</em>) – Time axis.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Size of the window.</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Step between windows.</p></li>
+<li><p><strong>metric</strong> (<em>callable</em>) – Similarity function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mean similarity value. (Missing in current implementation)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.datkit_spearmanr">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">datkit_spearmanr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#datkit_spearmanr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.datkit_spearmanr" title="Link to this definition"></a></dt>
+<dd><p>Computes a distance based on Spearman correlation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input time series.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Distance metric defined as 1 - <a href="#id3"><span class="problematic" id="id4">|Spearman correlation|</span></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.datkit_wasserstein">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">datkit_wasserstein</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prominence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#datkit_wasserstein"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.datkit_wasserstein" title="Link to this definition"></a></dt>
+<dd><p>Computes the Wasserstein (Earth Mover’s) distance between the peaks of two signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input signals.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input signals.</p></li>
+<li><p><strong>height</strong> (<em>float</em>) – Minimum height of peaks to detect.</p></li>
+<li><p><strong>distance</strong> (<em>int</em>) – Minimum horizontal distance between neighboring peaks.</p></li>
+<li><p><strong>prominence</strong> (<em>float</em>) – Required prominence of peaks.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wasserstein distance between the positions of detected peaks in v1 and v2.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.sliding_window_similarity">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">sliding_window_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">scipy.stats.spearmanr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#sliding_window_similarity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.sliding_window_similarity" title="Link to this definition"></a></dt>
+<dd><p>Computes local similarity between two signals using a sliding window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>t</strong> (<em>array-like</em>) – Time axis corresponding to the signals.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Size of the sliding window (number of samples).</p></li>
+<li><p><strong>step_size</strong> (<em>int</em>) – Step size for moving the window.</p></li>
+<li><p><strong>metric</strong> (<em>callable</em>) – Similarity function returning a correlation and a p-value (e.g., spearmanr, pearsonr).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>positions</strong> (<em>ndarray</em>) – Central time points for each window.</p></li>
+<li><p><strong>similarities</strong> (<em>ndarray</em>) – Similarity values computed for each window.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DATKit.utils.metric_utils.weighted_similarity_from_two_derivatives">
+<span class="sig-prename descclassname"><span class="pre">DATKit.utils.metric_utils.</span></span><span class="sig-name descname"><span class="pre">weighted_similarity_from_two_derivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DATKit/utils/metric_utils.html#weighted_similarity_from_two_derivatives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DATKit.utils.metric_utils.weighted_similarity_from_two_derivatives" title="Link to this definition"></a></dt>
+<dd><p>Computes a weighted similarity score using the absolute first derivative of two signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>positions</strong> (<em>array-like</em>) – Time points corresponding to the center of each similarity window.</p></li>
+<li><p><strong>similarities</strong> (<em>array-like</em>) – Similarity values for each window.</p></li>
+<li><p><strong>v1</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>v2</strong> (<em>array-like</em>) – Input time series.</p></li>
+<li><p><strong>t</strong> (<em>array-like</em>) – Time axis.</p></li>
+<li><p><strong>window_size</strong> (<em>int</em>) – Size of the window to use around each position for computing derivatives.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Weighting method: ‘mean’, ‘product’, ‘geometric’, ‘min’, or ‘max’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>weights</strong> (<em>ndarray</em>) – Weight values computed from signal derivatives.</p></li>
+<li><p><strong>weighted_mean</strong> (<em>float</em>) – Weighted mean of similarity values using the computed weights.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-DATKit.utils">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DATKit.utils" title="Link to this heading"></a></h2>
 </section>
@@ -183,6 +351,7 @@ with the same shape as <cite>x</cite>.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="DATKit.tools.html" class="btn btn-neutral float-left" title="DATKit.tools package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="demo.html" class="btn btn-neutral float-right" title="demo package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
