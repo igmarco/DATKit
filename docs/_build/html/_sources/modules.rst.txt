@@ -1,5 +1,5 @@
-DATKit-1
-========
+DATKit
+======
 
 .. toctree::
    :maxdepth: 4
